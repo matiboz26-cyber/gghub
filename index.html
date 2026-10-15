@@ -203,13 +203,12 @@ const G=[
  {name:'Veće ili manje',e:'🃏',c:['#16a34a','#052e16'],tag:'Klasik',help:'Pogodi je li sljedeća karta veća ili manja.',run:hilo},
  {name:'Kviz gradova',e:'🌍',c:['#06b6d4','#0c4a6e'],tag:'Zagonetka',help:'30 sekundi. Odaberi glavni grad države.',run:kviz},
  {name:'Balončići',e:'🎈',c:['#f43f5e','#9d174d'],tag:'Refleksi',help:'Pukni balone prije nego pobjegnu. Imaš 3 života.',run:balloons},
- {name:'Dvoboj',e:'🥊',c:['#ef4444','#1e3a8a'],tag:'Za dvoje',help:'Dva igrača na istom ekranu. Tko prvi stigne do 20 dodira pobjeđuje.',run:duel},
  {name:'Pogodi zastavu',e:'🏳️',c:['#14b8a6','#134e4a'],tag:'Zagonetka',help:'30 sekundi. Odaberi državu čija je zastava prikazana.',run:zastave},
  {name:'Stani na vrijeme',e:'⏱️',c:['#22c55e','#14532d'],tag:'Refleksi',help:'Klik / razmak zaustavlja marker. Pogodi zeleno polje.',run:stani},
  {name:'Zapamti broj',e:'🔟',c:['#f59e0b','#7c2d12'],tag:'Pamćenje',help:'Zapamti prikazani broj i upiši ga. Svaki put je duži.',run:broj},
  {name:'Brzo tipkanje',e:'⌨️',c:['#6366f1','#1e1b4b'],tag:'Refleksi',help:'30 sekundi. Upiši što više prikazanih riječi.',run:tipkaj}
 ];
-const CI={'Uči':'🎓','Klasik':'🕹️','Slagalica':'🧩','Protiv računala':'🤖','Arkada':'👾','Zagonetka':'🔎','Refleksi':'⚡','Pamćenje':'🧠','Za dvoje':'👥'};
+const CI={'Uči':'🎓','Klasik':'🕹️','Slagalica':'🧩','Protiv računala':'🤖','Arkada':'👾','Zagonetka':'🔎','Refleksi':'⚡','Pamćenje':'🧠'};
 function stats(){$('#stats').innerHTML=`<span>🎮 ${G.length} igara</span><span>🎓 ${LS.get('learn',0)} naučeno</span><span>❤️ ${fav.length} omiljenih</span>`}
 let fav=LS.get('fav',[]),rec=LS.get('rec',[]),best=LS.get('best',{}),cur=null,stop=null,cat='Sve',qs='';
 
@@ -1013,22 +1012,6 @@ function balloons(root,ui){
   });
   reset();raf=requestAnimationFrame(tick);
   return()=>cancelAnimationFrame(raf);
-}
-
-/* ---------- DVOBOJ (za dvoje) ---------- */
-function duel(root,ui){
-  root.innerHTML='<div style="display:flex;gap:10px;width:100%;max-width:340px"></div><div style="font-size:1.3rem;font-weight:900;min-height:2rem;text-align:center"></div><button class="btn">Nova igra</button>';
-  const [row,msg,nb]=root.children;let s=[0,0],over=false;
-  const info=()=>ui.score(`Plavi ${s[0]} : ${s[1]} Roza`);
-  [['Plavi','#38bdf8'],['Roza','#ff4f8b']].forEach((p,i)=>{
-    const b=document.createElement('button');b.className='cell';
-    b.style.cssText=`flex:1;aspect-ratio:auto;height:190px;background:${p[1]};color:#fff;font-size:1.3rem;touch-action:manipulation`;
-    b.textContent=p[0]+' – TAP!';
-    b.onpointerdown=()=>{if(over)return;s[i]++;info();if(s[i]>=20){over=true;msg.textContent=p[0]+' pobjeđuje! 🎉'}};
-    row.append(b);
-  });
-  nb.onclick=()=>{s=[0,0];over=false;msg.textContent='Tko prvi stigne do 20?';info()};
-  nb.onclick();
 }
 
 /* ---------- POGODI ZASTAVU ---------- */
