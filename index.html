@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>GGHub - besplatne igrice</title>
+<meta name="theme-color" content="#8b5cf6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f3f0ff;--card:#fff;--ink:#1d1b3a;--mute:#6b6890;--line:#ddd6fb;--acc:#ff4f8b;--p:#8b5cf6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c0a1f;--card:#181433;--ink:#f1eeff;--mute:#9a95c7;--line:#2d2760}}
@@ -63,6 +67,81 @@ footer{text-align:center;color:var(--mute);font-size:.85rem;margin-top:36px}
 .card .e{filter:drop-shadow(0 8px 8px #0005);transition:transform .25s}.card:hover .e{transform:scale(1.18) rotate(-8deg)}
 #daily{transition:transform .2s;box-shadow:0 16px 32px -14px var(--c1)}#daily:hover{transform:translateY(-3px)}
 #q:focus{box-shadow:0 0 0 4px #8b5cf633}
+/* ===== VIZUALNO POBOLJŠANJE ===== */
+:root{--f:"Fredoka",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body{font-family:var(--f);background:radial-gradient(700px 480px at 6% -8%,#8b5cf66a,transparent),radial-gradient(600px 460px at 100% 6%,#ff4f8b4d,transparent),radial-gradient(520px 420px at 50% 110%,#38bdf833,transparent),var(--bg);background-attachment:fixed}
+button,input{font-family:inherit}
+*{scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+::selection{background:var(--acc);color:#fff}
+:focus-visible{outline:3px solid var(--p);outline-offset:2px}
+header{padding:34px 0 8px}
+h1{font-size:clamp(3.6rem,16vw,6.4rem);letter-spacing:-2px;filter:drop-shadow(0 12px 26px #8b5cf655)}
+h1 i{animation:wob 4s ease-in-out infinite;box-shadow:0 10px 24px -8px #ff4f8b}
+@keyframes wob{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(2deg) translateY(-3px)}}
+header p{font-size:1.1rem;font-weight:500}
+#stats{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:0 0 16px}
+#stats span{background:var(--card);border:1px solid var(--line);padding:6px 14px;border-radius:999px;font-weight:600;font-size:.85rem;color:var(--mute)}
+#q{padding-left:50px;font-weight:500;box-shadow:0 10px 24px -14px #8b5cf6;background:var(--card) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%238b5cf6' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='8.5' cy='8.5' r='6'/%3E%3Cpath d='M13 13l5 5'/%3E%3C/svg%3E") 20px center/18px no-repeat}
+.chip{transition:transform .15s,box-shadow .2s,background .2s;box-shadow:0 4px 10px -6px #0004}
+.chip:hover{transform:translateY(-2px)}
+.chip.on{box-shadow:0 8px 18px -8px #ff4f8b}
+@media(max-width:640px){#chips{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding:2px 16px 8px;margin-inline:-16px;scrollbar-width:none}#chips .chip{flex:none}}
+#daily{position:relative;overflow:hidden;isolation:isolate;border-radius:28px;padding:20px 26px;margin-top:26px}
+#daily::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,#ffffff2e 50%,transparent 70%);transform:translateX(-100%);animation:shine 5.5s ease-in-out infinite}
+@keyframes shine{60%,100%{transform:translateX(100%)}}
+#daily .de{filter:drop-shadow(0 8px 10px #0005)}
+#daily b{font-size:1.7rem;line-height:1.1;text-shadow:0 2px 10px #0004}
+#recent{margin-top:18px}
+#grid{gap:18px;margin-top:26px}
+.card{min-height:190px;border-radius:26px;padding:18px 18px 16px}
+.card b{font-size:1.2rem;line-height:1.15;text-shadow:0 2px 8px #0004}
+.card:active{transform:scale(.97)}
+.card:focus-visible{outline:3px solid #fff;outline-offset:-6px}
+.tg{background:#00000040;backdrop-filter:blur(6px);letter-spacing:.05em}
+.card[data-tag="Uči"] .tg{background:#fde047;color:#422006}
+.go{transition:transform .2s,box-shadow .2s;box-shadow:0 6px 14px -6px #0006}
+.card:hover .go,.card:focus-visible .go{transform:translateX(4px)}
+.fv{backdrop-filter:blur(6px);transition:transform .15s}.fv:hover{transform:scale(1.15)}
+#modal{animation:fade .2s}
+.win{border-radius:26px;padding:16px;border-top:4px solid var(--c1,#8b5cf6);box-shadow:0 40px 90px -30px var(--c1,#8b5cf6),0 0 0 1px var(--line);animation:rise .3s cubic-bezier(.2,1.2,.4,1)}
+@keyframes fade{from{opacity:0}}
+@keyframes rise{from{opacity:0;transform:translateY(26px) scale(.95)}}
+.bar b{font-size:1.15rem}
+#ms{background:var(--bg);border:1px solid var(--line);padding:4px 12px;border-radius:999px;font-weight:600;color:var(--ink)}
+#ms:empty{visibility:hidden}
+#mx{box-shadow:0 6px 14px -6px var(--acc);transition:transform .15s}#mx:hover{transform:rotate(90deg)}
+#mh{font-size:.9rem;line-height:1.4}
+.cv{box-shadow:0 16px 36px -16px #000c;border:1px solid #ffffff14}
+.btn{background:linear-gradient(135deg,var(--acc),var(--p));box-shadow:0 8px 18px -8px var(--acc);transition:transform .12s,filter .2s}
+.btn:hover{filter:brightness(1.1)}.btn:active{transform:scale(.95)}
+.cell{box-shadow:inset 0 -3px 0 #0002;transition:transform .1s,background .2s}
+.cell:hover{background:var(--line)}.cell:active{transform:scale(.94)}
+.tile{box-shadow:0 6px 14px -6px #6d28d9;transition:transform .15s}
+.tile:hover{transform:translateY(-2px)}
+.tile.up{box-shadow:none;border:2px solid var(--line)}
+footer{margin-top:44px;padding-top:18px;border-top:1px dashed var(--line);font-weight:500}
+/* ===== VIZUALNO POBOLJŠANJE 2 ===== */
+.sec{grid-column:1/-1;margin:14px 0 -4px;font-size:1.3rem;font-weight:700;display:flex;align-items:center;gap:10px}
+.sec small{background:var(--card);border:1px solid var(--line);color:var(--mute);padding:2px 12px;border-radius:999px;font-size:.8rem;font-weight:600}
+.sec::after{content:"";flex:1;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--line),transparent)}
+.chip.learn:not(.on){border-color:#fbbf24;color:#d97706}
+.bs{display:inline-block;background:#0004;padding:2px 10px;border-radius:999px;margin-top:4px;font-weight:600}
+.lqbar{width:100%;max-width:300px;height:8px;border-radius:9px;background:var(--line);overflow:hidden}
+.lqbar>div{height:100%;width:100%;background:linear-gradient(90deg,var(--acc),var(--p));border-radius:9px}
+.lqq{background:var(--bg);border:2px solid var(--line);border-radius:20px;padding:12px 16px;width:100%;box-shadow:inset 0 -4px 0 #0000001a}
+.lq{border:2px solid var(--line);border-radius:16px;line-height:1.15}
+.lq:hover{border-color:var(--p)}
+.lq.yes{border-color:transparent;animation:yes .35s}
+.lq.no{border-color:transparent;animation:no .4s}
+@keyframes yes{40%{transform:scale(1.08)}}
+@keyframes no{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.cf{position:fixed;top:-30px;z-index:30;pointer-events:none;font-size:1.6rem;animation:cf 1.8s ease-in forwards}
+@keyframes cf{to{transform:translateY(112vh) rotate(540deg);opacity:.9}}
+@media(max-width:520px){
+ #modal{align-items:flex-end;padding:0}
+ .win{max-width:none;max-height:94%;border-radius:26px 26px 0 0;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px));animation:sheet .3s cubic-bezier(.2,1,.3,1)}
+}
+@keyframes sheet{from{transform:translateY(100%)}}
 </style>
 </head>
 <body>
@@ -70,6 +149,7 @@ footer{text-align:center;color:var(--mute);font-size:.85rem;margin-top:36px}
   <header>
     <h1><span>GG</span><i>Hub</i></h1>
     <p>Besplatne igrice za svaki dan. Klikni i igraj.</p>
+    <div id="stats"></div>
     <input id="q" type="search" placeholder="Traži igru… (pritisni /)" autocomplete="off">
     <div id="chips"></div>
     <div class="tools"><button class="chip" id="rnd">🎲 Nasumična igra</button><button class="chip" id="thm">🌙 Tema</button></div>
@@ -129,47 +209,61 @@ const G=[
  {name:'Zapamti broj',e:'🔟',c:['#f59e0b','#7c2d12'],tag:'Pamćenje',help:'Zapamti prikazani broj i upiši ga. Svaki put je duži.',run:broj},
  {name:'Brzo tipkanje',e:'⌨️',c:['#6366f1','#1e1b4b'],tag:'Refleksi',help:'30 sekundi. Upiši što više prikazanih riječi.',run:tipkaj}
 ];
+const CI={'Uči':'🎓','Klasik':'🕹️','Slagalica':'🧩','Protiv računala':'🤖','Arkada':'👾','Zagonetka':'🔎','Refleksi':'⚡','Pamćenje':'🧠','Za dvoje':'👥'};
+function stats(){$('#stats').innerHTML=`<span>🎮 ${G.length} igara</span><span>🎓 ${LS.get('learn',0)} naučeno</span><span>❤️ ${fav.length} omiljenih</span>`}
 let fav=LS.get('fav',[]),rec=LS.get('rec',[]),best=LS.get('best',{}),cur=null,stop=null,cat='Sve',qs='';
 
 function chips(){
   const c=$('#chips');c.innerHTML='';
-  ['Sve','❤️ Omiljene',...new Set(G.map(o=>o.tag))].forEach(t=>{
-    const b=document.createElement('button');b.className='chip'+(t===cat?' on':'');b.textContent=t;
+  ['Sve','❤️ Omiljene',...[...new Set(G.map(o=>o.tag))].sort((a,b)=>(b==='Uči')-(a==='Uči'))].forEach(t=>{
+    const b=document.createElement('button');b.className='chip'+(t===cat?' on':'')+(t==='Uči'?' learn':'');b.textContent=(CI[t]?CI[t]+' ':'')+t;
     b.onclick=()=>{cat=t;chips();render()};c.append(b);
   });
 }
 function render(){
   const g=$('#grid');g.innerHTML='';let n=0;
-  G.forEach(o=>{
+  const grouped=cat==='Sve'&&!qs,tags=[...new Set(G.map(o=>o.tag))].sort((a,b)=>(b==='Uči')-(a==='Uči')),L=grouped?tags.flatMap(t=>G.filter(o=>o.tag===t)):G;let lt='';
+  L.forEach(o=>{
+    if(grouped&&o.tag!==lt){lt=o.tag;const h=document.createElement('h2');h.className='sec';h.innerHTML=`${CI[lt]||''} ${lt} <small>${G.filter(x=>x.tag===lt).length}</small>`;g.append(h)}
     if(cat==='❤️ Omiljene'?!fav.includes(o.name):(cat!=='Sve'&&o.tag!==cat))return;
     if(qs&&!(o.name+o.tag).toLowerCase().includes(qs))return;
-    const b=document.createElement('div');b.className='card';b.dataset.e=o.e;b.tabIndex=0;b.setAttribute('role','button');
+    const b=document.createElement('div');b.className='card';b.dataset.e=o.e;b.dataset.tag=o.tag;b.tabIndex=0;b.setAttribute('role','button');
     b.style.cssText=`--c1:${o.c[0]};--c2:${o.c[1]};--i:${n++}`;
-    b.onkeydown=e=>{if(e.key==='Enter')openGame(o)};
+    b.onkeydown=e=>{if(e.target===b&&(e.key==='Enter'||e.key===' ')){e.preventDefault();openGame(o)}};
     b.innerHTML=`<span class="tg">${o.tag}</span><button class="fv" aria-label="Omiljeno">${fav.includes(o.name)?'❤️':'🤍'}</button><span class="e">${o.e}</span><span><b>${o.name}</b>${best[o.name]?`<small class="bs">🏆 Rekord: ${best[o.name]}</small>`:''}<span class="go">▶ IGRAJ</span></span>`;
     b.onclick=()=>openGame(o);
     const f=b.querySelector('.fv');
-    f.onclick=e=>{e.stopPropagation();const i=fav.indexOf(o.name);i<0?fav.push(o.name):fav.splice(i,1);LS.set('fav',fav);cat==='❤️ Omiljene'?render():f.textContent=i<0?'❤️':'🤍'};
+    f.onclick=e=>{e.stopPropagation();const i=fav.indexOf(o.name);i<0?fav.push(o.name):fav.splice(i,1);LS.set('fav',fav);stats();cat==='❤️ Omiljene'?render():f.textContent=i<0?'❤️':'🤍'};
     g.append(b);
   });
-  $('#none').hidden=n>0;
+  $('#none').hidden=n>0;stats();
 }
 $('#q').oninput=e=>{qs=e.target.value.trim().toLowerCase();render()};
 
 const showBest=()=>$('#mt').textContent=cur.e+' '+cur.name+(best[cur.name]?'  🏆 '+best[cur.name]:'');
+let docL=[];
+function dropDocL(){docL.forEach(([t,f,o])=>document.removeEventListener(t,f,o));docL=[]}
 function openGame(o){
-  if(stop)stop();
-  cur=o;showBest();$('#ms').textContent='';$('#mh').textContent=o.help;
+  if(stop)stop();dropDocL();
+  cur=o;$('#modal').style.setProperty('--c1',o.c[0]);showBest();$('#ms').textContent='';$('#mh').textContent=o.help;
   $('#stage').innerHTML='';$('#modal').hidden=false;
   rec=[o.name,...rec.filter(n=>n!==o.name)].slice(0,8);LS.set('rec',rec);
-  stop=o.run($('#stage'),{score:t=>{
-    $('#ms').textContent=t;
-    const m=/(?:Bodovi|Razina): (\d+)/.exec(t);
-    if(m&&+m[1]>(best[o.name]||0)){best[o.name]=+m[1];LS.set('best',best);showBest()}
-  }});
+  /* Sigurnosna mreža: svaki document listener koji igra doda bit će uklonjen pri zatvaranju, čak i ako igra zaboravi. */
+  const add=document.addEventListener;
+  document.addEventListener=function(t,f,op){docL.push([t,f,op]);return add.call(this,t,f,op)};
+  try{
+    stop=o.run($('#stage'),{score:t=>{
+      $('#ms').textContent=t;
+      const m=/(?:Bodovi|Razina): (\d+)/.exec(t);
+      if(m&&+m[1]>(best[o.name]||0)){best[o.name]=+m[1];LS.set('best',best);showBest()}
+    }});
+  }catch(err){
+    console.error(err);stop=null;
+    $('#stage').innerHTML='<p style="text-align:center">Ups, igra se nije učitala 😕</p>';
+  }finally{document.addEventListener=add}
 }
 function closeGame(){
-  if(stop)stop();stop=null;$('#modal').hidden=true;$('#stage').innerHTML='';
+  if(stop)stop();stop=null;dropDocL();$('#modal').hidden=true;$('#stage').innerHTML='';
   try{if(document.fullscreenElement)document.exitFullscreen()}catch(e){}
   render();recent();
 }
@@ -332,18 +426,13 @@ const QH=s=>`<div style="font-size:${s}rem;font-weight:900;text-align:center;min
 
 /* ---------- BRZI RAČUN ---------- */
 function brziRacun(root,ui){
-  let ans;
-  return timed(root,ui,QH(2.4),(g,cb)=>[0,1,2,3].map(()=>{
-    const b=document.createElement('button');b.className='cell';b.style.fontSize='1.6rem';
-    b.onclick=()=>cb(+b.dataset.v===ans);g.append(b);return b}),
-  (q,bs)=>{
-    const o=['+','-','×'][Math.random()*3|0],m=o=='×'?10:40;
-    let a=2+(Math.random()*m|0),b=2+(Math.random()*m|0);
+  return learnQuiz(root,ui,()=>{
+    const o=['+','-','×'][Math.random()*3|0],mx=o=='×'?10:40;
+    let a=2+(Math.random()*mx|0),b=2+(Math.random()*mx|0);
     if(o=='-'&&b>a)[a,b]=[b,a];
-    ans=o=='+'?a+b:o=='-'?a-b:a*b;q.textContent=a+' '+o+' '+b;
-    const s=new Set([ans]);while(s.size<4){const v=ans+(Math.random()*11|0)-5;if(v>=0)s.add(v)}
-    [...s].sort(()=>Math.random()-.5).forEach((v,i)=>{bs[i].textContent=v;bs[i].dataset.v=v});
-  });
+    const r=o=='+'?a+b:o=='-'?a-b:a*b;
+    return{q:a+' '+o+' '+b,a:r,d:[r+1,r-1,r+2,r-2,r+3,r-3,r+5,r-5,r+10].filter(v=>v>=0&&v!==r)};
+  },2.4);
 }
 
 /* ---------- BOJE ---------- */
@@ -895,16 +984,7 @@ function hilo(root,ui){
 
 /* ---------- KVIZ GRADOVA ---------- */
 function kviz(root,ui){
-  const P=[['Hrvatska','Zagreb'],['Francuska','Pariz'],['Njemačka','Berlin'],['Italija','Rim'],['Španjolska','Madrid'],['Austrija','Beč'],['Mađarska','Budimpešta'],['Slovenija','Ljubljana'],['Srbija','Beograd'],['Grčka','Atena'],['Portugal','Lisabon'],['Poljska','Varšava'],['Češka','Prag'],['Norveška','Oslo'],['Švedska','Stockholm'],['Irska','Dublin'],['Japan','Tokio'],['Kanada','Ottawa'],['Australija','Canberra'],['Turska','Ankara'],['Egipat','Kairo'],['Brazil','Brasilia']];
-  let ans;
-  return timed(root,ui,QH(1.5),(g,cb)=>[0,1,2,3].map(()=>{
-    const b=document.createElement('button');b.className='cell';b.style.cssText='font-size:1rem;font-weight:800;aspect-ratio:2/1';
-    b.onclick=()=>cb(b.textContent===ans);g.append(b);return b}),
-  (q,bs)=>{
-    const p=P[Math.random()*P.length|0];ans=p[1];q.textContent='Glavni grad: '+p[0];
-    const s=new Set([ans]);while(s.size<4)s.add(P[Math.random()*P.length|0][1]);
-    [...s].sort(()=>Math.random()-.5).forEach((v,i)=>bs[i].textContent=v);
-  });
+  return learnQuiz(root,ui,{P:[['Hrvatska','Zagreb'],['Francuska','Pariz'],['Njemačka','Berlin'],['Italija','Rim'],['Španjolska','Madrid'],['Austrija','Beč'],['Mađarska','Budimpešta'],['Slovenija','Ljubljana'],['Srbija','Beograd'],['Grčka','Atena'],['Portugal','Lisabon'],['Poljska','Varšava'],['Češka','Prag'],['Norveška','Oslo'],['Švedska','Stockholm'],['Irska','Dublin'],['Japan','Tokio'],['Kanada','Ottawa'],['Australija','Canberra'],['Turska','Ankara'],['Egipat','Kairo'],['Brazil','Brasilia']],q:x=>'Glavni grad: '+x[0]},1.5);
 }
 
 /* ---------- BALONČIĆI ---------- */
@@ -953,16 +1033,7 @@ function duel(root,ui){
 
 /* ---------- POGODI ZASTAVU ---------- */
 function zastave(root,ui){
-  const P=[['🇭🇷','Hrvatska'],['🇫🇷','Francuska'],['🇩🇪','Njemačka'],['🇮🇹','Italija'],['🇪🇸','Španjolska'],['🇯🇵','Japan'],['🇧🇷','Brazil'],['🇨🇦','Kanada'],['🇬🇷','Grčka'],['🇵🇹','Portugal'],['🇹🇷','Turska'],['🇸🇪','Švedska'],['🇳🇴','Norveška'],['🇦🇹','Austrija'],['🇨🇭','Švicarska'],['🇬🇧','Ujedinjeno Kraljevstvo'],['🇺🇸','SAD'],['🇮🇪','Irska']];
-  let ans;
-  return timed(root,ui,QH(4.2),(g,cb)=>[0,1,2,3].map(()=>{
-    const b=document.createElement('button');b.className='cell';b.style.cssText='font-size:.95rem;font-weight:800;aspect-ratio:2/1';
-    b.onclick=()=>cb(b.textContent===ans);g.append(b);return b}),
-  (q,bs)=>{
-    const p=P[Math.random()*P.length|0];ans=p[1];q.textContent=p[0];
-    const s=new Set([ans]);while(s.size<4)s.add(P[Math.random()*P.length|0][1]);
-    [...s].sort(()=>Math.random()-.5).forEach((v,i)=>bs[i].textContent=v);
-  });
+  return learnQuiz(root,ui,{P:[['🇭🇷','Hrvatska'],['🇫🇷','Francuska'],['🇩🇪','Njemačka'],['🇮🇹','Italija'],['🇪🇸','Španjolska'],['🇯🇵','Japan'],['🇧🇷','Brazil'],['🇨🇦','Kanada'],['🇬🇷','Grčka'],['🇵🇹','Portugal'],['🇹🇷','Turska'],['🇸🇪','Švedska'],['🇳🇴','Norveška'],['🇦🇹','Austrija'],['🇨🇭','Švicarska'],['🇬🇧','Ujedinjeno Kraljevstvo'],['🇺🇸','SAD'],['🇮🇪','Irska']],q:x=>x[0]},4.2);
 }
 
 /* ---------- STANI NA VRIJEME ---------- */
@@ -1023,6 +1094,229 @@ function tipkaj(root,ui){
     t=setInterval(()=>{tl--;info();if(tl<=0){clearInterval(t);i.disabled=true;d.textContent='Kraj!';ui.score('Kraj! Bodovi: '+sc)}},1000)};
   return()=>clearInterval(t);
 }
+
+// ====== GGHub UČI PATCH ======
+// Zalijepi cijeli ovaj blok u <script> PRIJE linije:  /* ---------- EXTRAS ---------- */
+// (nakon svih postojećih igara, a prije chips();render();daily();recent();)
+
+// ---------- Male popravke i pomoćnici ----------
+(()=>{
+  const s=document.createElement('style');
+  s.textContent='button{touch-action:manipulation}.lq{font-size:.95rem;font-weight:800;aspect-ratio:2/1;padding:4px}';
+  document.head.append(s);
+  const m=$('#modal');m.setAttribute('role','dialog');m.setAttribute('aria-modal','true');m.setAttribute('aria-label','Igra');
+})();
+const showLearn=stats;
+const addLearn=()=>{LS.set('learn',LS.get('learn',0)+1);showLearn()};
+function confetti(){
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  const E=['🎉','✨','⭐','🎊','💜','🩷'];
+  for(let i=0;i<26;i++){const e=document.createElement('span');e.className='cf';e.textContent=E[i%E.length];e.style.left=Math.random()*100+'vw';e.style.animationDelay=Math.random()*.5+'s';document.body.append(e);setTimeout(()=>e.remove(),2600)}
+}
+const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const ri=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+
+/* Kviz: tajmer s trakom, bojanje točnog/netočnog odgovora, krivi odgovori se ponavljaju nakon 3 pitanja,
+   serija točnih (🔥), način Vježba (bez tajmera) i sažetak grešaka na kraju.
+   src = funkcija koja vraća {q,a,d:[krivi odgovori]} ILI objekt {P:[[prompt,odgovor],...], q:x=>tekst} */
+function learnQuiz(root,ui,src,fs){
+  root.innerHTML=`<div class="lqbar"><div></div></div><div class="lqq" style="font-size:${fs||1.5}rem;font-weight:900;text-align:center;min-height:3.6rem;display:flex;align-items:center;justify-content:center">?</div><div class="ttt" style="grid-template-columns:1fr 1fr;max-width:300px"></div><p style="margin:0;min-height:1.4rem;text-align:center;font-weight:700"></p><div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center"><button class="btn">Start (30 s)</button><button class="btn" style="background:var(--line);color:var(--ink);box-shadow:none">Vježba</button></div><div style="font-size:.85rem;color:var(--mute);text-align:center;max-width:300px;white-space:pre-line"></div>`;
+  const [bar,q,g,m,row,rev]=root.children,[go,prac]=row.children,fill=bar.firstChild;
+  let sc=0,hits=0,tries=0,streak=0,tl=30,cnt=0,run=false,practice=false,lock=false,t,tm,ans,opts=[],cur,last='',miss=[],wrong=new Map();
+  const info=()=>ui.score(`Bodovi: ${sc}`+(streak>=3?` · 🔥${streak}`:'')+(practice?' · Vježba':` · Vrijeme: ${tl}s`));
+  const gen=()=>{if(typeof src=='function')return src();const x=src.P[Math.random()*src.P.length|0];return{q:src.q(x),a:x[1],d:src.P.map(y=>y[1])}};
+  const draw=()=>{
+    let p;
+    if(miss.length&&cnt-miss[0].at>=3)p=miss.shift().p;
+    else for(let i=0;i<6;i++){p=gen();if(p.q!==last)break}
+    last=p.q;cur=p;cnt++;ans=String(p.a);q.textContent=p.q;
+    const s=new Set([ans]);
+    for(const v of shuf(p.d.map(String)))if(s.size<4)s.add(v);
+    opts=shuf([...s]);lock=false;
+    bs.forEach((b,i)=>{b.className='cell lq';b.hidden=i>=opts.length;b.textContent=opts[i]||'';b.style.background='';b.style.color=''});
+  };
+  const paint=(b,c)=>{b.style.background=c;b.style.color='#fff';b.classList.add(c==='#22c55e'?'yes':'no')};
+  const pick=i=>{
+    if(!run||lock||i>=opts.length)return;
+    lock=true;tries++;
+    const ok=opts[i]===ans;
+    if(ok){hits++;streak++;addLearn()}else{streak=0;miss.push({p:cur,at:cnt});wrong.set(cur.q,ans)}
+    sc=ok?sc+1:Math.max(0,sc-1);
+    paint(bs[i],ok?'#22c55e':'#ef4444');
+    if(!ok)paint(bs[opts.indexOf(ans)],'#22c55e');
+    m.textContent=ok?(streak>=3?'🔥 '+streak+' zaredom!':'✅ Točno!'):'❌ Točno je: '+ans;
+    m.style.color=ok?'#22c55e':'#ef4444';
+    info();
+    tm=setTimeout(()=>{if(run)draw()},ok?220:1000);
+  };
+  const bs=[0,1,2,3].map(i=>{const b=document.createElement('button');b.className='cell lq';b.onclick=()=>pick(i);g.append(b);return b});
+  function end(){
+    clearInterval(t);clearTimeout(tm);run=false;q.textContent='Kraj!';prac.textContent='Vježba';
+    ui.score('Kraj! Bodovi: '+sc);m.style.color='';
+    m.textContent=tries?`Točno ${hits} od ${tries} (${Math.round(hits/tries*100)}%)`:'';
+    if(tries>=5&&hits/tries>=.8)confetti();
+    rev.textContent=wrong.size?'Za ponoviti:\n'+[...wrong].slice(0,6).map(([a,b])=>a+' → '+b).join('\n'):tries?'Bez ijedne greške! 🎉':'';
+    bs.forEach(b=>{b.style.background='';b.style.color=''});
+  }
+  function start(p){
+    clearInterval(t);clearTimeout(tm);
+    sc=hits=tries=streak=cnt=0;tl=30;miss=[];wrong=new Map();last='';practice=p;run=true;
+    m.textContent='';rev.textContent='';bar.style.visibility=p?'hidden':'visible';prac.textContent=p?'Završi':'Vježba';
+    fill.style.transition='none';fill.style.width='100%';fill.style.background='';void fill.offsetWidth;fill.style.transition='width 1s linear';
+    info();draw();
+    if(!p)t=setInterval(()=>{tl--;fill.style.width=tl/30*100+'%';fill.style.background=tl<=10?'#ef4444':tl<=20?'#f59e0b':'';info();if(tl<=0)end()},1000);
+  }
+  go.onclick=()=>start(false);
+  prac.onclick=()=>run&&practice?end():start(true);
+  const kd=e=>{if(e.key>='1'&&e.key<='4')pick(+e.key-1)};
+  document.addEventListener('keydown',kd);
+  return()=>{clearInterval(t);clearTimeout(tm);document.removeEventListener('keydown',kd)};
+}
+
+/* ---------- BINARNI BROJEVI ---------- */
+function binary(root,ui){
+  root.innerHTML='<div style="font-size:3.4rem;font-weight:900;text-align:center">?</div><div style="display:flex;gap:8px;width:100%;max-width:340px"></div><p style="margin:0;min-height:1.4rem;text-align:center"></p><button class="btn">Preskoči</button>';
+  const [d,row,m,sk]=root.children,V=[16,8,4,2,1];let n,b,sc=0,lock,tm;
+  const val=()=>b.reduce((s,x,i)=>s+x*V[i],0);
+  const paint=()=>bs.forEach((e,i)=>{
+    e.innerHTML=b[i]+'<small style="display:block;font-size:.6rem;opacity:.7">'+V[i]+'</small>';
+    e.style.background=b[i]?'var(--p)':'var(--bg)';e.style.color=b[i]?'#fff':'var(--ink)';
+  });
+  const nw=()=>{n=ri(1,31);b=[0,0,0,0,0];lock=false;d.textContent=n;m.textContent='Složi '+n+' bitovima 16 · 8 · 4 · 2 · 1';paint()};
+  const bs=V.map((v,i)=>{
+    const e=document.createElement('button');e.className='cell';e.style.cssText='flex:1;max-width:64px;aspect-ratio:auto;height:72px;font-size:1.6rem';
+    e.onclick=()=>{
+      if(lock)return;b[i]^=1;paint();
+      if(val()===n){lock=true;sc++;addLearn();ui.score('Bodovi: '+sc);m.textContent='✅ '+n+' = '+b.join('');tm=setTimeout(nw,900)}
+    };
+    row.append(e);return e;
+  });
+  sk.onclick=()=>{clearTimeout(tm);nw()};
+  ui.score('Bodovi: 0');nw();
+  return()=>clearTimeout(tm);
+}
+
+// ---------- Podaci za kvizove ----------
+const ENG=[['apple','jabuka'],['house','kuća'],['water','voda'],['book','knjiga'],['friend','prijatelj'],['school','škola'],['window','prozor'],['car','auto'],['cat','mačka'],['dog','pas'],['sun','sunce'],['moon','mjesec'],['tree','drvo'],['bread','kruh'],['milk','mlijeko'],['happy','sretan'],['big','velik'],['small','malen'],['fast','brz'],['slow','spor'],['red','crven'],['blue','plav'],['green','zelen'],['yellow','žut'],['always','uvijek'],['never','nikad'],['because','jer'],['tomorrow','sutra'],['yesterday','jučer'],['beautiful','lijep']];
+const CHEM=[['H','Vodik'],['He','Helij'],['Li','Litij'],['C','Ugljik'],['N','Dušik'],['O','Kisik'],['Ne','Neon'],['Na','Natrij'],['Mg','Magnezij'],['Al','Aluminij'],['Si','Silicij'],['P','Fosfor'],['S','Sumpor'],['Cl','Klor'],['K','Kalij'],['Ca','Kalcij'],['Fe','Željezo'],['Cu','Bakar'],['Zn','Cink'],['Ag','Srebro'],['Au','Zlato'],['Hg','Živa'],['Sn','Kositar'],['Pb','Olovo']];
+const IT=[['CPU','Procesor'],['RAM','Radna memorija'],['GPU','Grafički procesor'],['SSD','Brza pohrana podataka'],['HTML','Struktura web-stranice'],['CSS','Izgled web-stranice'],['JavaScript','Programski jezik weba'],['IP adresa','Adresa uređaja u mreži'],['DNS','Domene u IP adrese'],['HTTP','Protokol weba'],['LAN','Lokalna mreža'],['Router','Usmjernik prometa'],['Bit','Najmanja jedinica podataka'],['Byte','8 bitova'],['Operacijski sustav','Upravlja računalom'],['Firewall','Štiti mrežu'],['Git','Praćenje verzija koda']];
+const SPACE=[[1,'Merkur'],[2,'Venera'],[3,'Zemlja'],[4,'Mars'],[5,'Jupiter'],[6,'Saturn'],[7,'Uran'],[8,'Neptun']];
+const CC=[['ku_a','ć'],['ma_ka','č'],['no_','ć'],['pri_a','č'],['vru_e','ć'],['klju_','č'],['sve_a','ć'],['ru_ak','č']];
+
+G.push(
+ {name:'Tablica množenja',e:'✖️',c:['#6366f1','#1e1b4b'],tag:'Uči',help:'30 sekundi. Tipke 1–4 biraju odgovor.',
+  run:(r,u)=>learnQuiz(r,u,()=>{const a=ri(2,10),b=ri(2,10),x=a*b;return{q:a+' × '+b,a:x,d:[x+a,x-b,x+b,x-a,x+1,x-1,x+10].filter(v=>v>0&&v!==x)}},2.4)},
+ {name:'Postotci',e:'💯',c:['#f43f5e','#4c0519'],tag:'Uči',help:'30 sekundi. Izračunaj postotak od broja.',
+  run:(r,u)=>learnQuiz(r,u,()=>{const p=[10,20,25,50,75][ri(0,4)],n=ri(1,10)*20,x=n*p/100;return{q:p+'% od '+n,a:x,d:[x+1,x+2,x-1,x-2,x*2,x+10].filter(v=>v>0&&v!==x)}},2.2)},
+ {name:'Engleski rječnik',e:'🇬🇧',c:['#3b82f6','#1e3a8a'],tag:'Uči',help:'30 sekundi. Odaberi hrvatski prijevod.',
+  run:(r,u)=>learnQuiz(r,u,{P:ENG,q:x=>'Što znači „'+x[0]+'“?'},1.7)},
+ {name:'Kemijski elementi',e:'🧪',c:['#22c55e','#14532d'],tag:'Uči',help:'30 sekundi. Koji element ima ovaj simbol?',
+  run:(r,u)=>learnQuiz(r,u,{P:CHEM,q:x=>'Simbol: '+x[0]},2.6)},
+ {name:'Kviz informatike',e:'💻',c:['#0ea5e9','#0c4a6e'],tag:'Uči',help:'30 sekundi. Što je što u svijetu računala?',
+  run:(r,u)=>learnQuiz(r,u,{P:IT,q:x=>'Što je: '+x[0]+'?'},1.8)},
+ {name:'Sunčev sustav',e:'🪐',c:['#a855f7','#1e1b4b'],tag:'Uči',help:'30 sekundi. Redoslijed planeta od Sunca.',
+  run:(r,u)=>learnQuiz(r,u,{P:SPACE,q:x=>'Koji je planet '+x[0]+'. od Sunca?'},1.5)},
+ {name:'Č ili Ć?',e:'✍️',c:['#f59e0b','#78350f'],tag:'Uči',help:'30 sekundi. Koje slovo nedostaje u riječi?',
+  run:(r,u)=>learnQuiz(r,u,{P:CC,q:x=>x[0]},2.8)},
+ {name:'Binarni brojevi',e:'💾',c:['#14b8a6','#134e4a'],tag:'Uči',help:'Klikni bitove da složiš zadani broj u binarnom zapisu.',run:binary}
+);
+const toRoman=n=>[[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']].reduce((s,[v,r])=>{while(n>=v){s+=r;n-=v}return s},'');
+const HIST=[['Prvi čovjek na Mjesecu','1969'],['Pad Berlinskog zida','1989'],['Hrvatska ulazi u EU','2013'],['Početak Prvog svjetskog rata','1914'],['Kolumbo stiže u Ameriku','1492'],['Francuska revolucija','1789'],['Potonuće Titanica','1912'],['Početak Drugog svjetskog rata','1939'],['Hrvatska proglašava neovisnost','1991']];
+const MLAD=[['krave','tele'],['ovce','janje'],['konja','ždrijebe'],['psa','štene'],['mačke','mače'],['kokoši','pile'],['koze','jare'],['svinje','prase'],['patke','pače']];
+const SHAPES=[['Trokut',3],['Kvadrat',4],['Peterokut',5],['Šesterokut',6],['Sedmerokut',7],['Osmerokut',8],['Deseterokut',10]];
+const UNITS=[['1 km','1000 m'],['1 m','100 cm'],['1 h','60 min'],['1 min','60 s'],['1 kg','1000 g'],['1 l','1000 ml'],['1 dan','24 sata'],['1 tjedan','7 dana'],['1 godina','12 mjeseci']];
+const HR=[['Glavni grad','Zagreb'],['Valuta','Euro'],['More uz obalu','Jadransko'],['Najviši vrh','Dinara'],['Nacionalni park s jezerima i slapovima','Plitvice'],['Grad s Dioklecijanovom palačom','Split'],['Grad s rimskom Arenom','Pula'],['Grad zvan „biser Jadrana“','Dubrovnik'],['Najveći grad u Slavoniji','Osijek']];
+const JS=[['2 + "2"','"22"'],['"5" - 2','3'],['typeof null','"object"'],['[1,2,3].length','3'],['"abc".toUpperCase()','"ABC"'],['10 % 3','1'],['Math.max(4,9,2)','9'],['!!0','false'],['"a" + 1','"a1"'],['[..."hi"].length','2'],['typeof 5','"number"'],['3 > 2','true']];
+function redom(root,ui){
+  const g=document.createElement('div');g.className='mem';
+  const nb=document.createElement('button');nb.className='btn';nb.textContent='Nova igra';root.append(g,nb);
+  let nx,t0,tm;
+  function deal(){
+    clearInterval(tm);g.innerHTML='';nx=1;ui.score('Klikni 1');
+    shuf([...Array(16)].map((_,i)=>i+1)).forEach(v=>{
+      const b=document.createElement('button');b.className='tile up';b.style.fontSize='1.6rem';b.textContent=v;
+      b.onclick=()=>{
+        if(v!==nx)return;
+        if(nx===1){t0=performance.now();tm=setInterval(()=>ui.score('Sljedeći: '+nx+' · '+((performance.now()-t0)/1000).toFixed(1)+' s'),100)}
+        b.classList.add('ok');b.style.opacity=.35;
+        if(nx===16){clearInterval(tm);ui.score('Gotovo! '+((performance.now()-t0)/1000).toFixed(1)+' s 🎉');addLearn();confetti()}
+        nx++;
+      };
+      g.append(b);
+    });
+  }
+  nb.onclick=deal;deal();return()=>clearInterval(tm);
+}
+G.push(
+ {name:'Rimski brojevi',e:'🏛️',c:['#d97706','#451a03'],tag:'Uči',help:'30 sekundi. Pretvori rimski broj u arapski.',
+  run:(r,u)=>learnQuiz(r,u,()=>{const n=ri(1,39);return{q:toRoman(n),a:n,d:[n+1,n-1,n+2,n-2,n+5,n+10,n-10].filter(v=>v>0&&v!==n)}},2.8)},
+ {name:'Povijest: godine',e:'📜',c:['#a16207','#292524'],tag:'Uči',help:'30 sekundi. Kada se dogodilo?',
+  run:(r,u)=>learnQuiz(r,u,{P:HIST,q:x=>x[0]},1.4)},
+ {name:'Mladunci',e:'🐣',c:['#84cc16','#365314'],tag:'Uči',help:'30 sekundi. Kako se zove mladunče?',
+  run:(r,u)=>learnQuiz(r,u,{P:MLAD,q:x=>'Mladunče od: '+x[0]},1.6)},
+ {name:'Geometrijski oblici',e:'🔷',c:['#06b6d4','#164e63'],tag:'Uči',help:'30 sekundi. Koliko stranica ima lik?',
+  run:(r,u)=>learnQuiz(r,u,{P:SHAPES,q:x=>x[0]+': koliko stranica?'},1.6)},
+ {name:'Mjerne jedinice',e:'📏',c:['#64748b','#1e293b'],tag:'Uči',help:'30 sekundi. Pretvori jedinice.',
+  run:(r,u)=>learnQuiz(r,u,{P:UNITS,q:x=>'Koliko je '+x[0]+'?'},2)},
+ {name:'Kviz o Hrvatskoj',e:'🇭🇷',c:['#ef4444','#1e3a8a'],tag:'Uči',help:'30 sekundi. Što znaš o Hrvatskoj?',
+  run:(r,u)=>learnQuiz(r,u,{P:HR,q:x=>x[0]+'?'},1.3)},
+ {name:'JavaScript: što ispisuje?',e:'🧑‍💻',c:['#eab308','#1c1917'],tag:'Uči',help:'30 sekundi. Koja je vrijednost izraza?',
+  run:(r,u)=>learnQuiz(r,u,{P:JS,q:x=>x[0]},1.8)},
+ {name:'Brojevi redom',e:'🔢',c:['#8b5cf6','#312e81'],tag:'Refleksi',help:'Klikni brojeve od 1 do 16 redom što brže možeš.',run:redom}
+);
+const ANT=[['velik','malen'],['brz','spor'],['dan','noć'],['vruće','hladno'],['dobar','loš'],['mlad','star'],['svijetlo','tamno'],['visok','nizak'],['pun','prazan'],['težak','lagan']];
+const DE=[['das Haus','kuća'],['das Wasser','voda'],['das Buch','knjiga'],['der Freund','prijatelj'],['die Schule','škola'],['der Hund','pas'],['die Katze','mačka'],['das Brot','kruh'],['die Milch','mlijeko'],['der Apfel','jabuka'],['die Sonne','sunce'],['der Mond','mjesec'],['danke','hvala'],['bitte','molim']];
+const IRR=[['go','went'],['see','saw'],['eat','ate'],['take','took'],['write','wrote'],['buy','bought'],['come','came'],['give','gave'],['know','knew'],['run','ran'],['drink','drank'],['speak','spoke'],['think','thought'],['bring','brought']];
+const TAGS=[['<a>','Poveznica'],['<img>','Slika'],['<p>','Odlomak'],['<h1>','Glavni naslov'],['<ul>','Neuređeni popis'],['<table>','Tablica'],['<div>','Blok-kontejner'],['<button>','Gumb'],['<input>','Polje za unos'],['<br>','Prijelom retka']];
+const PORTS=[['HTTP','80'],['HTTPS','443'],['SSH','22'],['FTP','21'],['DNS','53'],['SMTP','25']];
+const CUR=[['Japan','Jen'],['SAD','Dolar'],['Velika Britanija','Funta'],['Švicarska','Franak'],['Poljska','Zlot'],['Češka','Kruna'],['Mađarska','Forinta'],['Hrvatska','Euro']];
+const isPrime=n=>{for(let i=2;i*i<=n;i++)if(n%i==0)return false;return n>1};
+const HEX=v=>v.toString(16).toUpperCase();
+function parovi(root,ui){
+  const g=document.createElement('div');g.className='mem';g.style.maxWidth='360px';
+  const nb=document.createElement('button');nb.className='btn';nb.textContent='Nova igra';root.append(g,nb);
+  let first,lock,moves,found,timer;
+  const flip=(b,u)=>{b.classList.toggle('up',!!u);b.textContent=u?b.dataset.t:'?'};
+  function deal(){
+    clearTimeout(timer);g.innerHTML='';moves=0;found=0;first=null;lock=false;ui.score('Potezi: 0');
+    const T=[];shuf(ENG).slice(0,6).forEach((p,k)=>{T.push([p[0],k],[p[1],k])});
+    shuf(T).forEach(([t,k])=>{
+      const b=document.createElement('button');b.className='tile';b.dataset.t=t;b.dataset.k=k;b.textContent='?';b.style.fontSize='.85rem';
+      b.onclick=()=>{
+        if(lock||b.classList.contains('up'))return;
+        flip(b,1);
+        if(!first){first=b;return}
+        moves++;ui.score('Potezi: '+moves);
+        if(first.dataset.k===b.dataset.k){first.classList.add('ok');b.classList.add('ok');first=null;if(++found==6){ui.score('Bravo! '+moves+' poteza 🎉');addLearn();confetti()}}
+        else{lock=true;const p=first;first=null;timer=setTimeout(()=>{flip(p,0);flip(b,0);lock=false},800)}
+      };
+      g.append(b);
+    });
+  }
+  nb.onclick=deal;deal();return()=>clearTimeout(timer);
+}
+G.push(
+ {name:'Parovi: EN – HR',e:'🔤',c:['#3b82f6','#312e81'],tag:'Uči',help:'Pronađi parove: engleska riječ i njezin hrvatski prijevod.',run:parovi},
+ {name:'Njemački rječnik',e:'🇩🇪',c:['#eab308','#1c1917'],tag:'Uči',help:'30 sekundi. Odaberi hrvatski prijevod.',
+  run:(r,u)=>learnQuiz(r,u,{P:DE,q:x=>'Što znači „'+x[0]+'“?'},1.7)},
+ {name:'Nepravilni glagoli',e:'📖',c:['#ec4899','#500724'],tag:'Uči',help:'30 sekundi. Odaberi prošlo vrijeme (past simple).',
+  run:(r,u)=>learnQuiz(r,u,{P:IRR,q:x=>'Past simple: '+x[0]},2.2)},
+ {name:'Antonimi',e:'↔️',c:['#14b8a6','#042f2e'],tag:'Uči',help:'30 sekundi. Odaberi suprotnu riječ.',
+  run:(r,u)=>learnQuiz(r,u,{P:ANT,q:x=>'Suprotno od: '+x[0]},2)},
+ {name:'HTML oznake',e:'🌐',c:['#f97316','#431407'],tag:'Uči',help:'30 sekundi. Čemu služi HTML oznaka?',
+  run:(r,u)=>learnQuiz(r,u,{P:TAGS,q:x=>'Oznaka: '+x[0]},2.6)},
+ {name:'Mrežni portovi',e:'🔌',c:['#0ea5e9','#082f49'],tag:'Uči',help:'30 sekundi. Koji je zadani port protokola?',
+  run:(r,u)=>learnQuiz(r,u,{P:PORTS,q:x=>'Zadani port: '+x[0]},2.4)},
+ {name:'Heksadekadski brojevi',e:'🧮',c:['#6366f1','#1e1b4b'],tag:'Uči',help:'30 sekundi. Pretvori decimalni broj u heksadekadski.',
+  run:(r,u)=>learnQuiz(r,u,()=>{const n=ri(10,255);return{q:'Dec '+n+' = ? (hex)',a:HEX(n),d:[n+1,n-1,n+16,n-16,n+2,n+15].filter(v=>v>0&&v!==n).map(HEX)}},2)},
+ {name:'Kvadrati i korijeni',e:'√',c:['#a855f7','#3b0764'],tag:'Uči',help:'30 sekundi. Kvadrat ili korijen broja.',
+  run:(r,u)=>learnQuiz(r,u,()=>{const n=ri(2,15),sq=Math.random()<.5,a=sq?n*n:n;return{q:sq?n+'²':'√'+n*n,a,d:(sq?[n*n+n,n*n-n,n*n+1,n*n-1,n*n+2*n]:[n+1,n-1,n+2,n-2,n*2]).filter(v=>v>0&&v!==a)}},2.8)},
+ {name:'Prosti brojevi',e:'🔍',c:['#22c55e','#052e16'],tag:'Uči',help:'30 sekundi. Je li broj prost?',
+  run:(r,u)=>learnQuiz(r,u,()=>{const n=ri(2,60);return{q:'Je li '+n+' prost broj?',a:isPrime(n)?'Da':'Ne',d:['Da','Ne']}},2)},
+ {name:'Valute svijeta',e:'💶',c:['#16a34a','#14532d'],tag:'Uči',help:'30 sekundi. Koja je valuta države?',
+  run:(r,u)=>learnQuiz(r,u,{P:CUR,q:x=>'Valuta: '+x[0]},1.8)}
+);
+// ====== kraj UČI patcha ======
 
 /* ---------- EXTRAS ---------- */
 function daily(){
