@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#8b5cf6">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f3f0ff;--card:#fff;--ink:#1d1b3a;--mute:#6b6890;--line:#ddd6fb;--acc:#ff4f8b;--p:#8b5cf6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c0a1f;--card:#181433;--ink:#f1eeff;--mute:#9a95c7;--line:#2d2760}}
@@ -68,7 +68,7 @@ footer{text-align:center;color:var(--mute);font-size:.85rem;margin-top:36px}
 #daily{transition:transform .2s;box-shadow:0 16px 32px -14px var(--c1)}#daily:hover{transform:translateY(-3px)}
 #q:focus{box-shadow:0 0 0 4px #8b5cf633}
 /* ===== VIZUALNO POBOLJŠANJE ===== */
-:root{--f:"Fredoka",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+:root{--f:"Fredoka-old",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 body{font-family:var(--f);background:radial-gradient(700px 480px at 6% -8%,#8b5cf66a,transparent),radial-gradient(600px 460px at 100% 6%,#ff4f8b4d,transparent),radial-gradient(520px 420px at 50% 110%,#38bdf833,transparent),var(--bg);background-attachment:fixed}
 button,input{font-family:inherit}
 *{scrollbar-width:thin;scrollbar-color:var(--line) transparent}
@@ -98,6 +98,7 @@ header p{font-size:1.1rem;font-weight:500}
 .card:active{transform:scale(.97)}
 .card:focus-visible{outline:3px solid #fff;outline-offset:-6px}
 .tg{background:#00000040;backdrop-filter:blur(6px);letter-spacing:.05em}
+.card[data-tag="Hrvatski"] .tg{background:#fff;color:#1d4ed8}
 .card[data-tag="Uči"] .tg{background:#fde047;color:#422006}
 .go{transition:transform .2s,box-shadow .2s;box-shadow:0 6px 14px -6px #0006}
 .card:hover .go,.card:focus-visible .go{transform:translateX(4px)}
@@ -142,17 +143,87 @@ footer{margin-top:44px;padding-top:18px;border-top:1px dashed var(--line);font-w
  .win{max-width:none;max-height:94%;border-radius:26px 26px 0 0;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px));animation:sheet .3s cubic-bezier(.2,1,.3,1)}
 }
 @keyframes sheet{from{transform:translateY(100%)}}
+
+/* ===== VIZUALNO POBOLJŠANJE 3: igre ===== */
+#stage{padding:14px;border-radius:20px;background:var(--bg);background:radial-gradient(120% 80% at 50% 0,color-mix(in srgb,var(--c1,#8b5cf6) 24%,transparent),transparent 70%),var(--bg);border:1px solid var(--line)}
+#mt{font-size:1.2rem}
+.cv{box-shadow:0 0 0 2px var(--c1,#8b5cf6),0 18px 40px -14px #000d;box-shadow:0 0 0 2px color-mix(in srgb,var(--c1,#8b5cf6) 70%,transparent),0 0 38px -10px var(--c1,#8b5cf6),0 18px 40px -14px #000d}
+.tile{transition:transform .2s}
+.tile.up{animation:flip .3s}
+@keyframes flip{from{transform:rotateY(90deg) scale(.9)}}
+@keyframes pop2{from{transform:scale(.85)}}
+.cell.x{text-shadow:0 0 16px #38bdf8}.cell.o{text-shadow:0 0 16px #ff4f8b}
+.mem .tile{border-radius:16px;font-weight:800}
+/* ===== PROFESIONALNI IZGLED ===== */
+:root{--f:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body{font-feature-settings:"cv11","ss01";-webkit-font-smoothing:antialiased}
+.wrap{max-width:1100px}
+header{text-align:left;padding:0}
+.top{position:sticky;top:0;z-index:8;background:var(--bg);background:color-mix(in srgb,var(--bg) 72%,transparent);backdrop-filter:blur(16px) saturate(1.4);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1100px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.logo{display:flex;align-items:center;gap:4px;font-weight:800;font-size:1.45rem;letter-spacing:-.04em}
+.logo span{background:linear-gradient(90deg,#ff4f8b,#8b5cf6,#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo i{font-style:normal;background:linear-gradient(135deg,#ff4f8b,#8b5cf6);color:#fff;padding:0 .3em .05em;border-radius:.3em}
+.top .tools{margin:0;justify-content:flex-end;flex-wrap:nowrap}
+.top .chip{font-weight:600;font-size:.85rem;padding:7px 14px}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:center;padding:34px 0 8px}
+@media(max-width:860px){.hero{grid-template-columns:1fr;gap:22px;padding-top:22px}}
+.eyebrow{display:inline-block;font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--p);background:color-mix(in srgb,var(--p) 14%,transparent);padding:6px 13px;border-radius:999px}
+.hero h2{font-size:clamp(2.3rem,6.2vw,3.7rem);line-height:1.03;letter-spacing:-.035em;margin:16px 0 12px;font-weight:800}
+.hero h2 em{font-style:normal;background:linear-gradient(90deg,#ff4f8b,#8b5cf6,#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--mute);font-size:1.02rem;line-height:1.6;margin:0 0 22px;max-width:48ch;font-weight:500}
+.hero p b{color:var(--ink)}
+.hero #q{max-width:none;font-weight:500}
+#chips{justify-content:flex-start;margin-top:26px}
+#prof{--rc:#8b5cf6;position:relative;overflow:hidden;background:var(--card);border:1px solid var(--line);border-radius:26px;padding:20px;box-shadow:0 34px 60px -38px var(--rc)}
+#prof::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(280px 170px at 100% 0,color-mix(in srgb,var(--rc) 28%,transparent),transparent)}
+#prof>*{position:relative}
+.pc-top{display:flex;align-items:center;gap:14px}
+.av{width:60px;height:60px;flex:none;border-radius:19px;display:grid;place-items:center;font-size:1.9rem;background:linear-gradient(135deg,color-mix(in srgb,var(--rc) 42%,transparent),color-mix(in srgb,var(--rc) 10%,transparent));border:1px solid color-mix(in srgb,var(--rc) 55%,transparent)}
+.pc-id{flex:1;min-width:0}
+.pname{all:unset;cursor:pointer;font-weight:800;font-size:1.2rem;letter-spacing:-.02em;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block}
+.pname:hover{opacity:.75}.pname:focus-visible{outline:2px solid var(--p);outline-offset:3px;border-radius:6px}
+.prank{font-size:.85rem;color:var(--mute);font-weight:600;margin-top:3px}.prank b{font-weight:800}
+.streak{text-align:center;font-weight:800;font-size:1.2rem;line-height:1}
+.streak small{display:block;font-size:.62rem;color:var(--mute);font-weight:600;margin-top:4px}
+.bars{display:grid;gap:13px;margin-top:20px}
+.bl{display:flex;justify-content:space-between;gap:8px;font-size:.76rem;font-weight:600;color:var(--mute);margin-bottom:6px}
+.pbar{height:8px;border-radius:9px;background:var(--line);overflow:hidden}
+.pbar i{display:block;height:100%;border-radius:9px;transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.pst{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}
+.pst div{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:11px 4px;text-align:center}
+.pst b{display:block;font-size:1.1rem;font-weight:800;letter-spacing:-.02em}
+.pst span{font-size:.64rem;color:var(--mute);font-weight:600}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.bd{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:var(--bg);border:1px solid var(--line);filter:grayscale(1);opacity:.4;font-size:1.05rem}
+.bd.on{filter:none;opacity:1;border-color:#fbbf24;box-shadow:0 6px 14px -8px #fbbf24}
+#toasts{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:50;display:grid;gap:8px;width:min(92vw,360px)}
+.toast{background:var(--card);color:var(--ink);border:1px solid var(--line);border-left:4px solid var(--p);padding:12px 16px;border-radius:14px;box-shadow:0 20px 40px -14px #000a;font-weight:600;animation:tin .35s cubic-bezier(.2,1.2,.4,1);transition:opacity .4s,transform .4s}
+.toast.out{opacity:0;transform:translateY(10px)}
+@keyframes tin{from{opacity:0;transform:translateY(20px) scale(.95)}}
+.card{border:1px solid #ffffff2a}
+.card .e{display:grid;place-items:center;width:66px;height:66px;border-radius:20px;background:#ffffff24;backdrop-filter:blur(8px);border:1px solid #ffffff40;font-size:2.3rem;filter:none;box-shadow:0 12px 22px -12px #0007}
+.card:hover .e{transform:scale(1.08) rotate(-6deg)}
+.card b{font-weight:700;letter-spacing:-.01em}
+.sec{font-weight:700;letter-spacing:-.02em}
+.bar b,#mt{font-weight:700;letter-spacing:-.01em}
+@media(max-width:520px){.top .chip{padding:7px 11px;font-size:.78rem}.pst{gap:6px}.pst b{font-size:1rem}}
 </style>
 </head>
 <body>
+<nav class="top"><div class="nav-in"><div class="logo"><span>GG</span><i>Hub</i></div><div class="tools"><button class="chip" id="rnd">🎲 Nasumična igra</button><button class="chip" id="thm">🌙 Tema</button></div></div></nav>
 <div class="wrap">
   <header>
-    <h1><span>GG</span><i>Hub</i></h1>
-    <p>Besplatne igrice za svaki dan. Klikni i igraj.</p>
-    <div id="stats"></div>
-    <input id="q" type="search" placeholder="Traži igru… (pritisni /)" autocomplete="off">
+    <div class="hero">
+      <div>
+        <span class="eyebrow">Besplatne igre u pregledniku</span>
+        <h2>Igraj. Uči. <em>Napreduj.</em></h2>
+        <p><b id="hc">70</b> igara, kvizova i vježbi: hrvatski jezik, engleski, informatika, matematika i klasične arkade. Skupljaj rangove i postignuća dok igraš.</p>
+        <input id="q" type="search" placeholder="Traži igru… (pritisni /)" autocomplete="off">
+      </div>
+      <div id="prof"></div>
+    </div>
     <div id="chips"></div>
-    <div class="tools"><button class="chip" id="rnd">🎲 Nasumična igra</button><button class="chip" id="thm">🌙 Tema</button></div>
   </header>
   <div id="daily"></div>
   <div id="recent" hidden></div>
@@ -169,7 +240,31 @@ footer{margin-top:44px;padding-top:18px;border-top:1px dashed var(--line);font-w
 <script>
 const $=s=>document.querySelector(s);
 const mk=(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;c.className='cv';return c};
-const overlay=(x,w,h,t)=>{x.fillStyle='rgba(0,0,0,.6)';x.fillRect(0,0,w,h);x.fillStyle='#fff';x.font='bold 22px system-ui,sans-serif';x.textAlign='center';x.fillText(t,w/2,h/2)};
+/* ---- Vizualni pomoćnici za canvas igre ---- */
+const STARS=[...Array(40)].map(()=>({x:Math.random(),y:Math.random(),r:Math.random()*1.4+.3,s:Math.random()*2+.5}));
+const bgFx=(x,w,h)=>{
+  const t=performance.now()/1000,g=x.createLinearGradient(0,0,0,h);
+  g.addColorStop(0,'#1c1650');g.addColorStop(1,'#09071c');x.fillStyle=g;x.fillRect(0,0,w,h);
+  x.fillStyle='#fff';
+  STARS.forEach(s=>{x.globalAlpha=.2+.5*Math.abs(Math.sin(t*s.s+s.x*9));x.beginPath();x.arc(s.x*w,s.y*h,s.r,0,7);x.fill()});
+  x.globalAlpha=1;
+  const v=x.createRadialGradient(w/2,h/2,Math.min(w,h)*.35,w/2,h/2,Math.max(w,h)*.8);
+  v.addColorStop(0,'rgba(0,0,0,0)');v.addColorStop(1,'rgba(0,0,0,.5)');x.fillStyle=v;x.fillRect(0,0,w,h);
+};
+const glow=(x,c,b)=>{x.shadowColor=c;x.shadowBlur=b};
+const noglow=x=>{x.shadowBlur=0};
+const FX=()=>{const P=[];return{
+  add(x,y,c,n=10){for(let i=0;i<n;i++){const a=Math.random()*6.283,s=1+Math.random()*3;P.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,l:1,c})}},
+  draw(ctx,dt=1){for(let i=P.length-1;i>=0;i--){const p=P[i];p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=.08*dt;p.l-=.03*dt;if(p.l<=0){P.splice(i,1);continue}ctx.globalAlpha=p.l;ctx.fillStyle=p.c;ctx.beginPath();ctx.arc(p.x,p.y,2.4*p.l+.6,0,7);ctx.fill()}ctx.globalAlpha=1}
+}};
+const overlay=(x,w,h,t)=>{
+  x.fillStyle='rgba(8,6,28,.72)';x.fillRect(0,0,w,h);
+  const bw=Math.min(w-40,300),bh=84,bx=(w-bw)/2,by=h/2-bh/2,g=x.createLinearGradient(bx,by,bx+bw,by+bh);
+  g.addColorStop(0,'#ff4f8b');g.addColorStop(1,'#8b5cf6');
+  glow(x,'#8b5cf6',30);x.fillStyle=g;x.beginPath();x.roundRect(bx,by,bw,bh,22);x.fill();noglow(x);
+  x.fillStyle='#fff';x.textAlign='center';x.textBaseline='middle';x.font='800 20px "Inter",system-ui,sans-serif';
+  x.fillText(t,w/2,h/2,bw-24);x.textBaseline='alphabetic';
+};
 const LS={get(k,d){try{const v=JSON.parse(localStorage.getItem('gg_'+k));return v==null?d:v}catch(e){return d}},set(k,v){try{localStorage.setItem('gg_'+k,JSON.stringify(v))}catch(e){}}};
 
 /* Registar igara. Svaka igra je funkcija run(root,ui) koja vraća funkciju za čišćenje. */
@@ -203,25 +298,25 @@ const G=[
  {name:'Veće ili manje',e:'🃏',c:['#16a34a','#052e16'],tag:'Klasik',help:'Pogodi je li sljedeća karta veća ili manja.',run:hilo},
  {name:'Kviz gradova',e:'🌍',c:['#06b6d4','#0c4a6e'],tag:'Zagonetka',help:'30 sekundi. Odaberi glavni grad države.',run:kviz},
  {name:'Balončići',e:'🎈',c:['#f43f5e','#9d174d'],tag:'Refleksi',help:'Pukni balone prije nego pobjegnu. Imaš 3 života.',run:balloons},
- {name:'Pogodi zastavu',e:'🏳️',c:['#14b8a6','#134e4a'],tag:'Zagonetka',help:'30 sekundi. Odaberi državu čija je zastava prikazana.',run:zastave},
+ {name:'Pogodi zastavu',e:'🏳️',c:['#14b8a6','#134e4a'],tag:'Zagonetka',help:'30 sekundi. Čija je ovo zastava? (Hrvatska ima pojednostavljen grb.)',run:zastave},
  {name:'Stani na vrijeme',e:'⏱️',c:['#22c55e','#14532d'],tag:'Refleksi',help:'Klik / razmak zaustavlja marker. Pogodi zeleno polje.',run:stani},
  {name:'Zapamti broj',e:'🔟',c:['#f59e0b','#7c2d12'],tag:'Pamćenje',help:'Zapamti prikazani broj i upiši ga. Svaki put je duži.',run:broj},
  {name:'Brzo tipkanje',e:'⌨️',c:['#6366f1','#1e1b4b'],tag:'Refleksi',help:'30 sekundi. Upiši što više prikazanih riječi.',run:tipkaj}
 ];
-const CI={'Uči':'🎓','Klasik':'🕹️','Slagalica':'🧩','Protiv računala':'🤖','Arkada':'👾','Zagonetka':'🔎','Refleksi':'⚡','Pamćenje':'🧠'};
-function stats(){$('#stats').innerHTML=`<span>🎮 ${G.length} igara</span><span>🎓 ${LS.get('learn',0)} naučeno</span><span>❤️ ${fav.length} omiljenih</span>`}
+const TR=t=>t==='Uči'?0:t==='Hrvatski'?1:2;
+const CI={'Hrvatski':'🇭🇷','Uči':'🎓','Klasik':'🕹️','Slagalica':'🧩','Protiv računala':'🤖','Arkada':'👾','Zagonetka':'🔎','Refleksi':'⚡','Pamćenje':'🧠'};
 let fav=LS.get('fav',[]),rec=LS.get('rec',[]),best=LS.get('best',{}),cur=null,stop=null,cat='Sve',qs='';
 
 function chips(){
   const c=$('#chips');c.innerHTML='';
-  ['Sve','❤️ Omiljene',...[...new Set(G.map(o=>o.tag))].sort((a,b)=>(b==='Uči')-(a==='Uči'))].forEach(t=>{
-    const b=document.createElement('button');b.className='chip'+(t===cat?' on':'')+(t==='Uči'?' learn':'');b.textContent=(CI[t]?CI[t]+' ':'')+t;
+  ['Sve','❤️ Omiljene',...[...new Set(G.map(o=>o.tag))].sort((a,b)=>TR(a)-TR(b))].forEach(t=>{
+    const b=document.createElement('button');b.className='chip'+(t===cat?' on':'')+(t==='Uči'||t==='Hrvatski'?' learn':'');b.textContent=(CI[t]?CI[t]+' ':'')+t;
     b.onclick=()=>{cat=t;chips();render()};c.append(b);
   });
 }
 function render(){
   const g=$('#grid');g.innerHTML='';let n=0;
-  const grouped=cat==='Sve'&&!qs,tags=[...new Set(G.map(o=>o.tag))].sort((a,b)=>(b==='Uči')-(a==='Uči')),L=grouped?tags.flatMap(t=>G.filter(o=>o.tag===t)):G;let lt='';
+  const grouped=cat==='Sve'&&!qs,tags=[...new Set(G.map(o=>o.tag))].sort((a,b)=>TR(a)-TR(b)),L=grouped?tags.flatMap(t=>G.filter(o=>o.tag===t)):G;let lt='';
   L.forEach(o=>{
     if(grouped&&o.tag!==lt){lt=o.tag;const h=document.createElement('h2');h.className='sec';h.innerHTML=`${CI[lt]||''} ${lt} <small>${G.filter(x=>x.tag===lt).length}</small>`;g.append(h)}
     if(cat==='❤️ Omiljene'?!fav.includes(o.name):(cat!=='Sve'&&o.tag!==cat))return;
@@ -229,7 +324,7 @@ function render(){
     const b=document.createElement('div');b.className='card';b.dataset.e=o.e;b.dataset.tag=o.tag;b.tabIndex=0;b.setAttribute('role','button');
     b.style.cssText=`--c1:${o.c[0]};--c2:${o.c[1]};--i:${n++}`;
     b.onkeydown=e=>{if(e.target===b&&(e.key==='Enter'||e.key===' ')){e.preventDefault();openGame(o)}};
-    b.innerHTML=`<span class="tg">${o.tag}</span><button class="fv" aria-label="Omiljeno">${fav.includes(o.name)?'❤️':'🤍'}</button><span class="e">${o.e}</span><span><b>${o.name}</b>${best[o.name]?`<small class="bs">🏆 Rekord: ${best[o.name]}</small>`:''}<span class="go">▶ IGRAJ</span></span>`;
+    b.innerHTML=`<span class="tg">${o.tag}</span><button class="fv" aria-label="Omiljeno">${fav.includes(o.name)?'❤️':'🤍'}</button><span class="e">${o.e}</span><span><b>${o.name}</b>${best[o.name]?`<small class="bs">🏆 Rekord: ${best[o.name]}</small>`:''}${pf.by[o.name]?`<small class="bs">▶ ${pf.by[o.name]}×</small>`:''}<span class="go">▶ IGRAJ</span></span>`;
     b.onclick=()=>openGame(o);
     const f=b.querySelector('.fv');
     f.onclick=e=>{e.stopPropagation();const i=fav.indexOf(o.name);i<0?fav.push(o.name):fav.splice(i,1);LS.set('fav',fav);stats();cat==='❤️ Omiljene'?render():f.textContent=i<0?'❤️':'🤍'};
@@ -244,7 +339,7 @@ let docL=[];
 function dropDocL(){docL.forEach(([t,f,o])=>document.removeEventListener(t,f,o));docL=[]}
 function openGame(o){
   if(stop)stop();dropDocL();
-  cur=o;$('#modal').style.setProperty('--c1',o.c[0]);showBest();$('#ms').textContent='';$('#mh').textContent=o.help;
+  cur=o;track(o);$('#modal').style.setProperty('--c1',o.c[0]);showBest();$('#ms').textContent='';$('#mh').textContent=o.help;
   $('#stage').innerHTML='';$('#modal').hidden=false;
   rec=[o.name,...rec.filter(n=>n!==o.name)].slice(0,8);LS.set('rec',rec);
   /* Sigurnosna mreža: svaki document listener koji igra doda bit će uklonjen pri zatvaranju, čak i ako igra zaboravi. */
@@ -254,7 +349,7 @@ function openGame(o){
     stop=o.run($('#stage'),{score:t=>{
       $('#ms').textContent=t;
       const m=/(?:Bodovi|Razina): (\d+)/.exec(t);
-      if(m&&+m[1]>(best[o.name]||0)){best[o.name]=+m[1];LS.set('best',best);showBest()}
+      if(m&&+m[1]>(best[o.name]||0)){const nw=!best[o.name];best[o.name]=+m[1];LS.set('best',best);showBest();if(nw)progress()}
     }});
   }catch(err){
     console.error(err);stop=null;
@@ -275,6 +370,7 @@ addEventListener('keydown',e=>{
 
 /* ---------- ZMIJICA ---------- */
 function snake(root,ui){
+  const fx=FX();
   const N=18,S=20,W=N*S,cv=mk(W,W),x=cv.getContext('2d');root.append(cv);
   let s,d,nd,f,sc,over;
   const has=p=>s.some(q=>q.x==p.x&&q.y==p.y);
@@ -284,14 +380,17 @@ function snake(root,ui){
     if(over)return;d=nd;const h={x:s[0].x+d.x,y:s[0].y+d.y};
     if(h.x<0||h.y<0||h.x>=N||h.y>=N||has(h)){over=true;draw();return}
     s.unshift(h);
-    if(h.x==f.x&&h.y==f.y){sc++;ui.score('Bodovi: '+sc);food()}else s.pop();
+    if(h.x==f.x&&h.y==f.y){fx.add(f.x*S+S/2,f.y*S+S/2,'#ef4444',14);sc++;ui.score('Bodovi: '+sc);food()}else s.pop();
     draw();
   }
   function draw(){
     for(let i=0;i<N;i++)for(let j=0;j<N;j++){x.fillStyle=(i+j)%2?'#171536':'#1b1940';x.fillRect(i*S,j*S,S,S)}
-    x.font='16px sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillText('🍎',f.x*S+S/2,f.y*S+S/2+1);
-    s.forEach((p,i)=>{x.fillStyle=i?'#22c55e':'#86efac';x.beginPath();x.roundRect(p.x*S+1,p.y*S+1,S-2,S-2,6);x.fill()});
-    x.textBaseline='alphabetic';
+    const pr=1+Math.sin(performance.now()/300)*.1;
+    x.font=`${16*pr}px sans-serif`;x.textAlign='center';x.textBaseline='middle';glow(x,'#ef4444',14);x.fillText('🍎',f.x*S+S/2,f.y*S+S/2+1);noglow(x);
+    s.forEach((p,i)=>{x.fillStyle=i?`hsl(142,65%,${26+(1-i/(s.length+3))*26}%)`:'#86efac';if(!i)glow(x,'#22c55e',12);x.beginPath();x.roundRect(p.x*S+1,p.y*S+1,S-2,S-2,i?6:8);x.fill();noglow(x)});
+    const hd=s[0],pe={x:Math.abs(d.y),y:Math.abs(d.x)};x.fillStyle='#064e3b';
+    [-1,1].forEach(m=>{x.beginPath();x.arc(hd.x*S+S/2+d.x*3+pe.x*4*m,hd.y*S+S/2+d.y*3+pe.y*4*m,2.2,0,7);x.fill()});
+    x.textBaseline='alphabetic';fx.draw(x,1);
     if(over)overlay(x,W,W,'Kraj! Klikni za novu igru');
   }
   function dir(dx,dy){if(over){reset();return}if(dx==-d.x&&dy==-d.y)return;nd={x:dx,y:dy}}
@@ -305,8 +404,8 @@ function snake(root,ui){
     Math.abs(dx)>Math.abs(dy)?dir(dx>0?1:-1,0):dir(0,dy>0?1:-1);
   });
   cv.onclick=()=>{if(over)reset()};
-  document.addEventListener('keydown',key);reset();const t=setInterval(step,110);
-  return()=>{clearInterval(t);document.removeEventListener('keydown',key)};
+  document.addEventListener('keydown',key);reset();const t=setInterval(step,110);let raf=0;const loop=()=>{draw();raf=requestAnimationFrame(loop)};loop();
+  return()=>{cancelAnimationFrame(raf);clearInterval(t);document.removeEventListener('keydown',key)};
 }
 
 /* ---------- MEMORY ---------- */
@@ -371,6 +470,7 @@ function ttt(root,ui){
 
 /* ---------- SVEMIRCI ---------- */
 function invaders(root,ui){
+  const fx=FX();
   const W=320,H=420,cv=mk(W,H),x=cv.getContext('2d');root.append(cv);
   let px,al,dir,bl,eb,sc,lives,lvl,st,raf,last=0,cd=0;const keys={};
   const info=()=>ui.score('Bodovi: '+sc+' · '+'❤️'.repeat(Math.max(lives,0)));
@@ -389,16 +489,16 @@ function invaders(root,ui){
       if(al.some(a=>a.x<14||a.x>W-14)){dir=-dir;al.forEach(a=>{a.y+=14;a.x+=dir*2})}
       if(al.length&&Math.random()<.014*dt){const a=al[Math.random()*al.length|0];eb.push({x:a.x,y:a.y+10})}
       eb.forEach(b=>b.y+=3*dt);
-      bl=bl.filter(b=>{const i=al.findIndex(a=>Math.abs(a.x-b.x)<14&&Math.abs(a.y-b.y)<14);if(i>=0){al.splice(i,1);sc+=10;info();return false}return b.y>0});
+      bl=bl.filter(b=>{const i=al.findIndex(a=>Math.abs(a.x-b.x)<14&&Math.abs(a.y-b.y)<14);if(i>=0){fx.add(al[i].x,al[i].y,'#fbbf24',12);al.splice(i,1);sc+=10;info();return false}return b.y>0});
       eb=eb.filter(b=>{if(b.y>H-44&&b.y<H-14&&Math.abs(b.x-px)<16){lives--;info();if(lives<=0)st='over';return false}return b.y<H});
       if(!al.length){lvl++;wave()}
       if(al.some(a=>a.y>H-70))st='over';
     }
-    x.fillStyle='#0f0e24';x.fillRect(0,0,W,H);
-    x.textAlign='center';x.font='22px sans-serif';al.forEach(a=>x.fillText(a.e,a.x,a.y+8));
-    x.font='30px sans-serif';x.fillText('🚀',px,H-18);
-    x.fillStyle='#38bdf8';bl.forEach(b=>x.fillRect(b.x-1.5,b.y,3,10));
-    x.fillStyle='#ff4f8b';eb.forEach(b=>x.fillRect(b.x-1.5,b.y,3,10));
+    bgFx(x,W,H);
+    x.textAlign='center';x.font='22px sans-serif';glow(x,'#8b5cf6',10);al.forEach(a=>x.fillText(a.e,a.x,a.y+8));
+    x.font='30px sans-serif';glow(x,'#38bdf8',16);x.fillText('🚀',px,H-18);
+    glow(x,'#38bdf8',12);x.fillStyle='#7dd3fc';bl.forEach(b=>{x.beginPath();x.roundRect(b.x-1.5,b.y,3,10,2);x.fill()});
+    glow(x,'#ff4f8b',12);x.fillStyle='#ff8fb5';eb.forEach(b=>{x.beginPath();x.roundRect(b.x-1.5,b.y,3,10,2);x.fill()});noglow(x);fx.draw(x,dt);
     if(st=='over')overlay(x,W,H,'Kraj! Klikni za novu');
     raf=requestAnimationFrame(tick);
   }
@@ -487,6 +587,7 @@ function clicker(root,ui){
 
 /* ---------- RAZBIJ CIGLE ---------- */
 function breakout(root,ui){
+  const fx=FX();
   const W=360,H=440,C=8,R=5,bw=W/C,bh=22,pw=72,cv=mk(W,H),x=cv.getContext('2d');root.append(cv);
   let br,px,b,lives,sc,st,raf,last=0;const keys={};
   const info=()=>ui.score('Bodovi: '+sc+' · '+'❤️'.repeat(lives));
@@ -506,15 +607,15 @@ function breakout(root,ui){
       if(b.y<6){b.y=6;b.vy=Math.abs(b.vy)}
       if(b.vy>0&&b.y>H-30&&b.y<H-16&&Math.abs(b.x-px)<pw/2+6){b.vy=-Math.abs(b.vy);b.vx=(b.x-px)/(pw/2)*5}
       for(const k of br){
-        if(k.a&&b.x>k.x-4&&b.x<k.x+bw+4&&b.y>k.y-4&&b.y<k.y+bh+4){k.a=0;b.vy=-b.vy*1.01;b.vx*=1.01;if(Math.abs(b.vy)>7.5)b.vy=Math.sign(b.vy)*7.5;sc+=10;info();break}
+        if(k.a&&b.x>k.x-4&&b.x<k.x+bw+4&&b.y>k.y-4&&b.y<k.y+bh+4){k.a=0;fx.add(k.x+bw/2,k.y+bh/2,`hsl(${k.r*45+5},85%,62%)`,10);b.vy=-b.vy*1.01;b.vx*=1.01;if(Math.abs(b.vy)>7.5)b.vy=Math.sign(b.vy)*7.5;sc+=10;info();break}
       }
       if(!br.some(k=>k.a))st='win';
       if(b.y>H+10){lives--;info();if(lives>0)serve();else st='over'}
     }
-    x.fillStyle='#0f0e24';x.fillRect(0,0,W,H);
-    br.forEach(k=>{if(!k.a)return;x.fillStyle=`hsl(${k.r*45+5},80%,60%)`;x.beginPath();x.roundRect(k.x+2,k.y+2,bw-4,bh-4,5);x.fill()});
-    x.fillStyle='#38bdf8';x.beginPath();x.roundRect(px-pw/2,H-24,pw,10,5);x.fill();
-    x.fillStyle='#fff';x.beginPath();x.arc(b.x,b.y,6,0,7);x.fill();
+    bgFx(x,W,H);
+    br.forEach(k=>{if(!k.a)return;const c=`hsl(${k.r*45+5},80%,60%)`;glow(x,c,8);x.fillStyle=c;x.beginPath();x.roundRect(k.x+2,k.y+2,bw-4,bh-4,6);x.fill();noglow(x);x.fillStyle='#ffffff40';x.beginPath();x.roundRect(k.x+4,k.y+4,bw-8,5,3);x.fill()});
+    const pg=x.createLinearGradient(0,H-24,0,H-14);pg.addColorStop(0,'#7dd3fc');pg.addColorStop(1,'#0284c7');glow(x,'#38bdf8',14);x.fillStyle=pg;x.beginPath();x.roundRect(px-pw/2,H-24,pw,10,5);x.fill();
+    glow(x,'#fff',16);x.fillStyle='#fff';x.beginPath();x.arc(b.x,b.y,6,0,7);x.fill();noglow(x);fx.draw(x,dt);
     if(st=='ready'){x.fillStyle='#fff9';x.font='14px system-ui,sans-serif';x.textAlign='center';x.fillText('Klikni za start',W/2,H/2+40)}
     if(st=='over')overlay(x,W,H,'Kraj igre. Klikni za novu');
     if(st=='win')overlay(x,W,H,'Pobijedio si! 🎉');
@@ -539,7 +640,7 @@ function g2048(root,ui){
     g.innerHTML='';
     B.forEach(v=>{const c=document.createElement('div');
       c.style.cssText=`aspect-ratio:1;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:${v>999?'1.2rem':'1.7rem'};color:#1d1b3a;background:${v?`hsl(${Math.log2(v)*32+20},75%,${v>4?58:75}%)`:'var(--bg)'}`;
-      c.textContent=v||'';g.append(c)});
+      c.textContent=v||'';if(v){c.style.boxShadow='0 6px 12px -6px #0007,inset 0 -3px 0 #0002';c.style.animation='pop2 .2s'}g.append(c)});
     ui.score('Bodovi: '+sc+(over?' · Kraj!':''));
   }
   function line(a){const r=a.filter(Boolean);for(let i=0;i<r.length-1;i++)if(r[i]==r[i+1]){r[i]*=2;sc+=r[i];r.splice(i+1,1)}while(r.length<4)r.push(0);return r}
@@ -586,7 +687,7 @@ function mines(root,ui){
     g.innerHTML='';
     C.forEach((c,i)=>{
       const b=document.createElement('button');
-      b.style.cssText=`aspect-ratio:1;border:0;border-radius:6px;font-weight:900;font-size:1rem;font-family:inherit;padding:0;cursor:pointer;background:${c.o?(c.m?'#ef4444':'var(--bg)'):'var(--line)'};color:${COL[c.n]||'inherit'}`;
+      b.style.cssText=`aspect-ratio:1;border:0;border-radius:6px;font-weight:900;font-size:1rem;font-family:inherit;padding:0;cursor:pointer;background:${c.o?(c.m?'#ef4444':'var(--bg)'):'var(--line)'};color:${COL[c.n]||'inherit'};box-shadow:${c.o?'none':'inset 0 -3px 0 #0003,inset 0 2px 0 #fff3'}`;
       b.textContent=c.o?(c.m?'💣':c.n||''):c.f?'🚩':'';
       b.onclick=()=>click(i);b.oncontextmenu=e=>{e.preventDefault();flag(i)};g.append(b);
     });
@@ -598,14 +699,14 @@ function mines(root,ui){
 
 /* ---------- ČETIRI U NIZU ---------- */
 function connect4(root,ui){
-  const g=document.createElement('div');g.style.cssText='display:grid;grid-template-columns:repeat(7,1fr);gap:4px;width:100%;max-width:340px;background:#2563eb;padding:6px;border-radius:14px';
+  const g=document.createElement('div');g.style.cssText='display:grid;grid-template-columns:repeat(7,1fr);gap:4px;width:100%;max-width:340px;background:linear-gradient(160deg,#3b82f6,#1d4ed8);box-shadow:0 14px 30px -14px #1d4ed8;padding:8px;border-radius:18px';
   const nb=document.createElement('button');nb.className='btn';nb.textContent='Nova igra';root.append(g,nb);
   let B,over,busy,tm;
   const row=c=>{for(let r=5;r>=0;r--)if(!B[r*7+c])return r;return -1};
   const win=p=>{for(let r=0;r<6;r++)for(let c=0;c<7;c++)for(const[dr,dc]of[[0,1],[1,0],[1,1],[1,-1]]){let k=0;for(;k<4;k++){const R=r+dr*k,C=c+dc*k;if(R<0||R>5||C<0||C>6||B[R*7+C]!=p)break}if(k==4)return true}return false};
   function paint(){
     g.innerHTML='';
-    B.forEach((v,i)=>{const b=document.createElement('button');b.style.cssText=`aspect-ratio:1;border:0;border-radius:50%;padding:0;cursor:pointer;background:${v==1?'#ef4444':v==2?'#fde047':'var(--bg)'}`;b.onclick=()=>click(i%7);g.append(b)});
+    B.forEach((v,i)=>{const b=document.createElement('button');b.style.cssText=`aspect-ratio:1;border:0;border-radius:50%;padding:0;cursor:pointer;background:${v==1?'radial-gradient(circle at 35% 30%,#fca5a5,#ef4444 55%,#991b1b)':v==2?'radial-gradient(circle at 35% 30%,#fef9c3,#fde047 55%,#ca8a04)':'#1e3a8a'};box-shadow:inset 0 4px 8px #0006`;b.onclick=()=>click(i%7);g.append(b)});
   }
   function drop(c,p){
     const r=row(c);if(r<0)return false;B[r*7+c]=p;paint();
@@ -644,10 +745,10 @@ function dino(root,ui){
       sc+=dt*.12;sp+=.0009*dt;ui.score('Bodovi: '+(sc|0));
       if(o.some(c=>c.x<50&&c.x+c.w>32&&y<c.h-4))st='over';
     }
-    x.fillStyle='#0f0e24';x.fillRect(0,0,W,H);
-    x.fillStyle='#ffffff40';x.fillRect(0,GR,W,2);
-    x.fillStyle='#22c55e';o.forEach(c=>{x.beginPath();x.roundRect(c.x,GR-c.h,c.w,c.h,5);x.fill()});
-    x.font='30px sans-serif';x.textAlign='center';x.fillText('🦖',41,GR-y-2);
+    bgFx(x,W,H);
+    const gg=x.createLinearGradient(0,GR,0,H);gg.addColorStop(0,'#312e81');gg.addColorStop(1,'#1e1b4b');x.fillStyle=gg;x.fillRect(0,GR,W,H-GR);x.fillStyle='#a78bfa';x.fillRect(0,GR,W,2);x.fillStyle='#ffffff22';for(let i=0;i<W;i+=40)x.fillRect(((i-sc*8)%W+W)%W,GR+12,16,2);
+    glow(x,'#4ade80',12);x.fillStyle='#22c55e';o.forEach(c=>{x.beginPath();x.roundRect(c.x,GR-c.h,c.w,c.h,6);x.fill();x.fillStyle='#4ade80';x.fillRect(c.x+3,GR-c.h+5,3,c.h-10);x.fillStyle='#22c55e'});noglow(x);
+    x.font='30px sans-serif';x.textAlign='center';glow(x,'#a3e635',10);x.fillText('🦖',41,GR-y-2);noglow(x);
     if(st=='ready'){x.fillStyle='#fff9';x.font='14px system-ui,sans-serif';x.fillText('Klikni za start',W/2,60)}
     if(st=='over')overlay(x,W,H,'Kraj! Klikni za novu');
     raf=requestAnimationFrame(tick);
@@ -683,10 +784,10 @@ function tetris(root,ui){
   function tick(t){
     acc+=Math.min(t-last,100);last=t;
     if(!over&&acc>Math.max(100,600-lines*18)){acc=0;down()}
-    x.fillStyle='#0f0e24';x.fillRect(0,0,CW*S,CH*S);
-    const cell=(i,j,c)=>{x.fillStyle=c;x.fillRect(i*S+1,j*S+1,S-2,S-2)};
+    bgFx(x,CW*S,CH*S);x.strokeStyle='#ffffff0d';x.lineWidth=1;for(let i=1;i<CW;i++){x.beginPath();x.moveTo(i*S,0);x.lineTo(i*S,CH*S);x.stroke()}for(let j=1;j<CH;j++){x.beginPath();x.moveTo(0,j*S);x.lineTo(CW*S,j*S);x.stroke()}
+    const cell=(i,j,c)=>{x.fillStyle=c;x.beginPath();x.roundRect(i*S+1,j*S+1,S-2,S-2,4);x.fill();x.fillStyle='#ffffff55';x.fillRect(i*S+3,j*S+3,S-6,3);x.fillStyle='#0004';x.fillRect(i*S+3,j*S+S-5,S-6,3)};
     B.forEach((r,j)=>r.forEach((v,i)=>v&&cell(i,j,v)));
-    if(!over)p.m.forEach((r,j)=>r.forEach((v,i)=>v&&cell(p.x+i,p.y+j,p.c)));
+    if(!over){let gy=p.y;while(!hit(p.m,p.x,gy+1))gy++;x.globalAlpha=.22;p.m.forEach((r,j)=>r.forEach((v,i)=>v&&cell(p.x+i,gy+j,p.c)));x.globalAlpha=1;glow(x,p.c,12);p.m.forEach((r,j)=>r.forEach((v,i)=>v&&cell(p.x+i,p.y+j,p.c)));noglow(x)}
     if(over)overlay(x,CW*S,CH*S,'Kraj! Klikni za novu');
     raf=requestAnimationFrame(tick);
   }
@@ -771,7 +872,7 @@ function mole(root,ui){
 
 /* ---------- KAMEN, ŠKARE, PAPIR ---------- */
 function rps(root,ui){
-  const O=['🪨','✂️','📄'],w={y:0,c:0};
+  const O=['✊','✂️','📄'],w={y:0,c:0};
   const r=document.createElement('div');r.style.cssText='font-size:3rem;text-align:center;min-height:6rem';r.textContent='🤔';
   const row=document.createElement('div');row.style.cssText='display:flex;gap:12px';
   O.forEach((o,i)=>{
@@ -805,11 +906,11 @@ function pong(root,ui){
     if(b.vx>0&&b.x>W-24&&b.x<W-8&&Math.abs(b.y-ay)<36){b.vx=-Math.min(b.vx*1.03,9);b.vy=(b.y-ay)/30*4;b.x=W-24}
     if(b.x<-10){s[1]++;serve(1);sc()}
     if(b.x>W+10){s[0]++;serve(-1);sc()}
-    x.fillStyle='#0f0e24';x.fillRect(0,0,W,H);
+    bgFx(x,W,H);
     x.fillStyle='#ffffff30';for(let i=0;i<H;i+=24)x.fillRect(W/2-2,i,4,12);
-    x.fillStyle='#38bdf8';x.fillRect(10,py-30,8,60);
-    x.fillStyle='#ff4f8b';x.fillRect(W-18,ay-30,8,60);
-    x.fillStyle='#fff';x.beginPath();x.arc(b.x,b.y,6,0,7);x.fill();
+    glow(x,'#38bdf8',16);x.fillStyle='#38bdf8';x.beginPath();x.roundRect(10,py-30,8,60,4);x.fill();
+    glow(x,'#ff4f8b',16);x.fillStyle='#ff4f8b';x.beginPath();x.roundRect(W-18,ay-30,8,60,4);x.fill();
+    glow(x,'#fff',18);x.fillStyle='#fff';x.beginPath();x.arc(b.x,b.y,6,0,7);x.fill();noglow(x);
     raf=requestAnimationFrame(tick);
   }
   const move=e=>{const r=cv.getBoundingClientRect();py=clamp((e.clientY-r.top)*H/r.height)};
@@ -858,6 +959,7 @@ function slide(root,ui){
 
 /* ---------- HVATAJ VOĆE ---------- */
 function catchf(root,ui){
+  const fx=FX();
   const W=320,H=420,cv=mk(W,H),x=cv.getContext('2d');root.append(cv);
   const F=['🍎','🍌','🍇','🍓','🍊'];const keys={};
   let px=W/2,it,sc,lives,raf,last=0,tm,over;
@@ -873,14 +975,14 @@ function catchf(root,ui){
       tm-=dt;if(tm<=0){it.push({x:20+Math.random()*(W-40),y:-20,e:Math.random()<.2?'💣':F[Math.random()*5|0]});tm=Math.max(22,55-sc)}
       it.forEach(o=>o.y+=(2.2+sc/25)*dt);
       it=it.filter(o=>{
-        if(o.y>H-52&&o.y<H-22&&Math.abs(o.x-px)<38){if(o.e=='💣')hurt();else{sc++;info()}return false}
+        if(o.y>H-52&&o.y<H-22&&Math.abs(o.x-px)<38){if(o.e=='💣'){fx.add(o.x,o.y,'#ef4444',14);hurt()}else{fx.add(o.x,o.y,'#fbbf24',10);sc++;info()}return false}
         if(o.y>H+10){if(o.e!='💣')hurt();return false}
         return true;
       });
     }
     const gr=x.createLinearGradient(0,0,0,H);gr.addColorStop(0,'#1e1b4b');gr.addColorStop(1,'#4c1d95');x.fillStyle=gr;x.fillRect(0,0,W,H);
-    x.textAlign='center';x.font='28px sans-serif';it.forEach(o=>x.fillText(o.e,o.x,o.y));
-    x.font='50px sans-serif';x.fillText('🧺',px,H-16);
+    x.textAlign='center';x.font='28px sans-serif';glow(x,'#fff',10);it.forEach(o=>x.fillText(o.e,o.x,o.y));
+    x.font='50px sans-serif';glow(x,'#fb7185',14);x.fillText('🧺',px,H-16);noglow(x);fx.draw(x,dt);
     if(over)overlay(x,W,H,'Kraj! Klikni za novu');
     raf=requestAnimationFrame(tick);
   }
@@ -894,7 +996,7 @@ function catchf(root,ui){
 
 /* ---------- VJEŠALA ---------- */
 function hang(root,ui){
-  const WD=['JABUKA','RAČUNALO','MAČKA','PLANINA','ČOKOLADA','BICIKL','KNJIGA','ŠKOLA','PRIJATELJ','LOPTA','ŽIRAFA','SLADOLED','ZAGREB','TIPKOVNICA','AUTOMOBIL','DUGA'];
+  const WD=['JABUKA','RAČUNALO','MAČKA','PLANINA','ČOKOLADA','BICIKL','KNJIGA','ŠKOLA','PRIJATELJ','LOPTA','ŽIRAFA','SLADOLED','ZAGREB','TIPKOVNICA','AUTOMOBIL','DUGA','PROZOR','VJETAR','ZVIJEZDA','MJESEC','UČITELJ','KIŠOBRAN','NOGOMET','TELEVIZOR','MOBITEL','ŠUMA','RIJEKA','OBALA','JESEN','PROLJEĆE','LJETO','ZIMA','ORMAR','KREVET','STOLICA','SLIKA','GITARA','KLAVIR','ZMIJA','LEPTIR','PČELA','VEVERICA','DELFIN','KROKODIL','TRAKTOR'];
   const d=document.createElement('div');d.style.cssText='font-size:1.9rem;font-weight:900;letter-spacing:5px;text-align:center;min-height:3rem;word-break:break-all';
   const k=document.createElement('div');k.style.cssText='display:flex;flex-wrap:wrap;gap:5px;justify-content:center;max-width:340px';
   const nb=document.createElement('button');nb.className='btn';nb.textContent='Nova riječ';root.append(d,k,nb);
@@ -909,7 +1011,7 @@ function hang(root,ui){
     const b=document.createElement('button');b.className='chip';b.textContent=c;
     b.onclick=()=>{u.add(c);if(!w.includes(c))l--;paint()};k.append(b);
   });
-  function reset(){w=WD[Math.random()*WD.length|0];u=new Set();l=6;paint()}
+  function reset(){w=pickDeck('hang',WD);u=new Set();l=6;paint()}
   nb.onclick=reset;reset();
 }
 
@@ -952,9 +1054,9 @@ function dodge(root,ui){
       sc+=dt*.1;ui.score('Bodovi: '+(sc|0));
       if(it.some(o=>o.y>H-60&&o.y<H-14&&Math.abs(o.x-px)<22))over=true;
     }
-    x.fillStyle='#0f0e24';x.fillRect(0,0,W,H);x.textAlign='center';
-    x.font='28px sans-serif';it.forEach(o=>x.fillText('☄️',o.x,o.y));
-    x.font='34px sans-serif';x.fillText('🛸',px,H-16);
+    bgFx(x,W,H);x.textAlign='center';
+    x.font='28px sans-serif';glow(x,'#f97316',18);it.forEach(o=>x.fillText('☄️',o.x,o.y));
+    x.font='34px sans-serif';glow(x,'#a855f7',18);x.fillText('🛸',px,H-16);noglow(x);
     if(over)overlay(x,W,H,'Kraj! Klikni za novu');
     raf=requestAnimationFrame(tick);
   }
@@ -983,11 +1085,12 @@ function hilo(root,ui){
 
 /* ---------- KVIZ GRADOVA ---------- */
 function kviz(root,ui){
-  return learnQuiz(root,ui,{P:[['Hrvatska','Zagreb'],['Francuska','Pariz'],['Njemačka','Berlin'],['Italija','Rim'],['Španjolska','Madrid'],['Austrija','Beč'],['Mađarska','Budimpešta'],['Slovenija','Ljubljana'],['Srbija','Beograd'],['Grčka','Atena'],['Portugal','Lisabon'],['Poljska','Varšava'],['Češka','Prag'],['Norveška','Oslo'],['Švedska','Stockholm'],['Irska','Dublin'],['Japan','Tokio'],['Kanada','Ottawa'],['Australija','Canberra'],['Turska','Ankara'],['Egipat','Kairo'],['Brazil','Brasilia']],q:x=>'Glavni grad: '+x[0]},1.5);
+  return learnQuiz(root,ui,{P:CITIES,q:x=>'Glavni grad: '+x[0]},1.5);
 }
 
 /* ---------- BALONČIĆI ---------- */
 function balloons(root,ui){
+  const fx=FX();
   const W=320,H=420,cv=mk(W,H),x=cv.getContext('2d');root.append(cv);
   let b,sc,lives,over,tm,raf,last=0;
   const info=()=>ui.score('Bodovi: '+sc+' · '+'❤️'.repeat(Math.max(lives,0)));
@@ -1001,14 +1104,14 @@ function balloons(root,ui){
     }
     const gr=x.createLinearGradient(0,0,0,H);gr.addColorStop(0,'#38bdf8');gr.addColorStop(1,'#e0f2fe');x.fillStyle=gr;x.fillRect(0,0,W,H);
     b.forEach(o=>{x.strokeStyle='#0004';x.beginPath();x.moveTo(o.x,o.y+o.r);x.lineTo(o.x,o.y+o.r+26);x.stroke();
-      x.fillStyle=`hsl(${o.h},80%,60%)`;x.beginPath();x.ellipse(o.x,o.y,o.r*.85,o.r,0,0,7);x.fill()});
+      x.fillStyle=`hsl(${o.h},80%,60%)`;x.beginPath();x.ellipse(o.x,o.y,o.r*.85,o.r,0,0,7);x.fill();x.fillStyle='#ffffff55';x.beginPath();x.ellipse(o.x-o.r*.3,o.y-o.r*.35,o.r*.18,o.r*.3,-.5,0,7);x.fill()});fx.draw(x,dt);
     if(over)overlay(x,W,H,'Kraj! Klikni za novu');
     raf=requestAnimationFrame(tick);
   }
   cv.addEventListener('pointerdown',e=>{
     if(over){reset();return}
     const r=cv.getBoundingClientRect(),mx=(e.clientX-r.left)*W/r.width,my=(e.clientY-r.top)*H/r.height;
-    for(let i=b.length-1;i>=0;i--)if(Math.hypot(b[i].x-mx,b[i].y-my)<b[i].r+8){b.splice(i,1);sc++;info();break}
+    for(let i=b.length-1;i>=0;i--)if(Math.hypot(b[i].x-mx,b[i].y-my)<b[i].r+8){fx.add(b[i].x,b[i].y,`hsl(${b[i].h},85%,62%)`,14);b.splice(i,1);sc++;info();break}
   });
   reset();raf=requestAnimationFrame(tick);
   return()=>cancelAnimationFrame(raf);
@@ -1016,7 +1119,7 @@ function balloons(root,ui){
 
 /* ---------- POGODI ZASTAVU ---------- */
 function zastave(root,ui){
-  return learnQuiz(root,ui,{P:[['🇭🇷','Hrvatska'],['🇫🇷','Francuska'],['🇩🇪','Njemačka'],['🇮🇹','Italija'],['🇪🇸','Španjolska'],['🇯🇵','Japan'],['🇧🇷','Brazil'],['🇨🇦','Kanada'],['🇬🇷','Grčka'],['🇵🇹','Portugal'],['🇹🇷','Turska'],['🇸🇪','Švedska'],['🇳🇴','Norveška'],['🇦🇹','Austrija'],['🇨🇭','Švicarska'],['🇬🇧','Ujedinjeno Kraljevstvo'],['🇺🇸','SAD'],['🇮🇪','Irska']],q:x=>x[0]},4.2);
+  return learnQuiz(root,ui,{P:FLAGS.map(f=>[f,f[0]]),q:()=>'Ova zastava',h:x=>flagSVG(x[0])},1.5);
 }
 
 /* ---------- STANI NA VRIJEME ---------- */
@@ -1033,9 +1136,9 @@ function stani(root,ui){
   function tick(t){
     const dt=Math.min((t-last)/16.67||1,3);last=t;
     if(!over){pos+=d*(3+sc*.35)*dt;if(pos>W-10){pos=W-10;d=-1}if(pos<10){pos=10;d=1}}
-    x.fillStyle='#0f0e24';x.fillRect(0,0,W,H);
-    x.fillStyle='#22c55e';x.fillRect(z.x,40,z.w,60);
-    x.fillStyle='#fff';x.fillRect(pos-3,30,6,80);
+    bgFx(x,W,H);
+    glow(x,'#22c55e',18);x.fillStyle='#22c55e';x.beginPath();x.roundRect(z.x,40,z.w,60,10);x.fill();
+    glow(x,'#fff',14);x.fillStyle='#fff';x.beginPath();x.roundRect(pos-3,30,6,80,3);x.fill();noglow(x);
     if(over)overlay(x,W,H,'Promašaj! Klikni za novu');
     raf=requestAnimationFrame(tick);
   }
@@ -1067,11 +1170,11 @@ function broj(root,ui){
 
 /* ---------- BRZO TIPKANJE ---------- */
 function tipkaj(root,ui){
-  const W=['zmija','planina','tipkovnica','bicikl','prozor','sladoled','zagreb','loptica','oblak','vjetar','jabuka','gitara','sat','zvijezda','more','pas','sunce','knjiga','torba','cvijet'];
+  const W=['zmija','planina','tipkovnica','bicikl','prozor','sladoled','zagreb','loptica','oblak','vjetar','jabuka','gitara','sat','zvijezda','more','pas','sunce','knjiga','torba','cvijet','kuća','škola','miš','zaslon','mreža','pjesma','proljeće','prijatelj','nogomet','kišobran','televizor','čarapa','mačka','lopta','grad','selo','noć','dan','kruh','mlijeko','voda','vatra','zemlja','zrak','vrijeme','djevojka','dječak','učitelj'];
   root.innerHTML='<div style="font-size:2.2rem;font-weight:900;min-height:3rem;text-align:center">—</div><input type="text" disabled autocomplete="off" autocapitalize="off" spellcheck="false" style="padding:12px;font-size:1.3rem;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);width:220px;text-align:center"><button class="btn">Start</button>';
   const [d,i,bt]=root.children;let sc=0,tl=0,w,t;
   const info=()=>ui.score(`Bodovi: ${sc} · Vrijeme: ${tl}s`);
-  const next=()=>{w=W[Math.random()*W.length|0];d.textContent=w;i.value=''};
+  const next=()=>{w=pickDeck('tipkaj',W);d.textContent=w;i.value=''};
   i.oninput=()=>{if(tl>0&&i.value.trim().toLowerCase()===w){sc++;info();next()}};
   bt.onclick=()=>{clearInterval(t);sc=0;tl=30;info();i.disabled=false;i.focus();next();
     t=setInterval(()=>{tl--;info();if(tl<=0){clearInterval(t);i.disabled=true;d.textContent='Kraj!';ui.score('Kraj! Bodovi: '+sc)}},1000)};
@@ -1090,13 +1193,24 @@ function tipkaj(root,ui){
   const m=$('#modal');m.setAttribute('role','dialog');m.setAttribute('aria-modal','true');m.setAttribute('aria-label','Igra');
 })();
 const showLearn=stats;
-const addLearn=()=>{LS.set('learn',LS.get('learn',0)+1);showLearn()};
+const addLearn=()=>{LS.set('learn',LS.get('learn',0)+1);progress()};
 function confetti(){
   if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-  const E=['🎉','✨','⭐','🎊','💜','🩷'];
+  const E=['🎉','✨','⭐','🎊','💜','💖'];
   for(let i=0;i<26;i++){const e=document.createElement('span');e.className='cf';e.textContent=E[i%E.length];e.style.left=Math.random()*100+'vw';e.style.animationDelay=Math.random()*.5+'s';document.body.append(e);setTimeout(()=>e.remove(),2600)}
 }
 const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+/* Trajni špil: svako pitanje dođe na red prije nego se ijedno ponovi (čak i između posjeta). */
+function nextOf(key,n){
+  let d=LS.get('dk_'+key,null);
+  if(!d||d.n!==n||!d.q.length){
+    const q=shuf([...Array(n).keys()]);
+    if(d&&n>1&&q[q.length-1]===d.l)[q[0],q[q.length-1]]=[q[q.length-1],q[0]];
+    d={n,q,l:d?d.l:-1};
+  }
+  const i=d.q.pop();d.l=i;LS.set('dk_'+key,d);return i;
+}
+const pickDeck=(key,a)=>a[nextOf(key,a.length)];
 const ri=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
 
 /* Kviz: tajmer s trakom, bojanje točnog/netočnog odgovora, krivi odgovori se ponavljaju nakon 3 pitanja,
@@ -1105,14 +1219,18 @@ const ri=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
 function learnQuiz(root,ui,src,fs){
   root.innerHTML=`<div class="lqbar"><div></div></div><div class="lqq" style="font-size:${fs||1.5}rem;font-weight:900;text-align:center;min-height:3.6rem;display:flex;align-items:center;justify-content:center">?</div><div class="ttt" style="grid-template-columns:1fr 1fr;max-width:300px"></div><p style="margin:0;min-height:1.4rem;text-align:center;font-weight:700"></p><div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center"><button class="btn">Start (30 s)</button><button class="btn" style="background:var(--line);color:var(--ink);box-shadow:none">Vježba</button></div><div style="font-size:.85rem;color:var(--mute);text-align:center;max-width:300px;white-space:pre-line"></div>`;
   const [bar,q,g,m,row,rev]=root.children,[go,prac]=row.children,fill=bar.firstChild;
-  let sc=0,hits=0,tries=0,streak=0,tl=30,cnt=0,run=false,practice=false,lock=false,t,tm,ans,opts=[],cur,last='',miss=[],wrong=new Map();
+  const key=cur.name;let sc=0,hits=0,tries=0,streak=0,tl=30,cnt=0,run=false,practice=false,lock=false,t,tm,ans,opts=[],cq,recent=[],miss=[],wrong=new Map();
   const info=()=>ui.score(`Bodovi: ${sc}`+(streak>=3?` · 🔥${streak}`:'')+(practice?' · Vježba':` · Vrijeme: ${tl}s`));
-  const gen=()=>{if(typeof src=='function')return src();const x=src.P[Math.random()*src.P.length|0];return{q:src.q(x),a:x[1],d:src.P.map(y=>y[1])}};
+  const gen=()=>{
+    if(typeof src=='function'){let p;for(let i=0;i<40;i++){p=src();if(!recent.includes(p.q))break}recent.push(p.q);if(recent.length>25)recent.shift();return p}
+    const x=src.P[nextOf(key,src.P.length)];
+    return{q:src.q(x),a:x[1],d:src.P.map(y=>y[1]),h:src.h?src.h(x):null};
+  };
   const draw=()=>{
     let p;
     if(miss.length&&cnt-miss[0].at>=3)p=miss.shift().p;
-    else for(let i=0;i<6;i++){p=gen();if(p.q!==last)break}
-    last=p.q;cur=p;cnt++;ans=String(p.a);q.textContent=p.q;
+    else p=gen();
+    cq=p;cnt++;ans=String(p.a);if(p.h)q.innerHTML=p.h;else q.textContent=p.q;
     const s=new Set([ans]);
     for(const v of shuf(p.d.map(String)))if(s.size<4)s.add(v);
     opts=shuf([...s]);lock=false;
@@ -1123,7 +1241,7 @@ function learnQuiz(root,ui,src,fs){
     if(!run||lock||i>=opts.length)return;
     lock=true;tries++;
     const ok=opts[i]===ans;
-    if(ok){hits++;streak++;addLearn()}else{streak=0;miss.push({p:cur,at:cnt});wrong.set(cur.q,ans)}
+    if(ok){hits++;streak++;addLearn()}else{streak=0;miss.push({p:cq,at:cnt});wrong.set(cq.q,ans)}
     sc=ok?sc+1:Math.max(0,sc-1);
     paint(bs[i],ok?'#22c55e':'#ef4444');
     if(!ok)paint(bs[opts.indexOf(ans)],'#22c55e');
@@ -1143,7 +1261,7 @@ function learnQuiz(root,ui,src,fs){
   }
   function start(p){
     clearInterval(t);clearTimeout(tm);
-    sc=hits=tries=streak=cnt=0;tl=30;miss=[];wrong=new Map();last='';practice=p;run=true;
+    sc=hits=tries=streak=cnt=0;tl=30;miss=[];wrong=new Map();recent=[];practice=p;run=true;
     m.textContent='';rev.textContent='';bar.style.visibility=p?'hidden':'visible';prac.textContent=p?'Završi':'Vježba';
     fill.style.transition='none';fill.style.width='100%';fill.style.background='';void fill.offsetWidth;fill.style.transition='width 1s linear';
     info();draw();
@@ -1198,8 +1316,8 @@ G.push(
  {name:'Kviz informatike',e:'💻',c:['#0ea5e9','#0c4a6e'],tag:'Uči',help:'30 sekundi. Što je što u svijetu računala?',
   run:(r,u)=>learnQuiz(r,u,{P:IT,q:x=>'Što je: '+x[0]+'?'},1.8)},
  {name:'Sunčev sustav',e:'🪐',c:['#a855f7','#1e1b4b'],tag:'Uči',help:'30 sekundi. Redoslijed planeta od Sunca.',
-  run:(r,u)=>learnQuiz(r,u,{P:SPACE,q:x=>'Koji je planet '+x[0]+'. od Sunca?'},1.5)},
- {name:'Č ili Ć?',e:'✍️',c:['#f59e0b','#78350f'],tag:'Uči',help:'30 sekundi. Koje slovo nedostaje u riječi?',
+  run:(r,u)=>learnQuiz(r,u,{P:SPACE,q:x=>typeof x[0]=='number'?'Koji je planet '+x[0]+'. od Sunca?':x[0]+'?'},1.5)},
+ {name:'Č ili Ć?',e:'✍️',c:['#f59e0b','#78350f'],tag:'Hrvatski',help:'30 sekundi. Koje slovo nedostaje u riječi?',
   run:(r,u)=>learnQuiz(r,u,{P:CC,q:x=>x[0]},2.8)},
  {name:'Binarni brojevi',e:'💾',c:['#14b8a6','#134e4a'],tag:'Uči',help:'Klikni bitove da složiš zadani broj u binarnom zapisu.',run:binary}
 );
@@ -1299,6 +1417,163 @@ G.push(
  {name:'Valute svijeta',e:'💶',c:['#16a34a','#14532d'],tag:'Uči',help:'30 sekundi. Koja je valuta države?',
   run:(r,u)=>learnQuiz(r,u,{P:CUR,q:x=>'Valuta: '+x[0]},1.8)}
 );
+// ---------- HRVATSKI JEZIK ----------
+const JAT=[['ml_ko','ije'],['d_te','ije'],['sn_g','ije'],['r_ka','ije'],['l_p','ije'],['b_l','ije'],['vr_me','ije'],['pr_atelj','ije'],['cv_t','ije'],['m_sec','je'],['p_sma','je'],['v_tar','je'],['d_vojka','je'],['v_ra','je'],['m_sto','je'],['d_ca','je'],['n_bo','e'],['ž_na','e']];
+const DJ=[['_ak','đ'],['_ep','dž'],['_emper','dž'],['_ungla','dž'],['_umbir','đ'],['me_u','đ'],['_ez','dž'],['_ubre','đ']];
+const CAPS=[['ponedjeljak','Ponedjeljak','dan u tjednu'],['siječanj','Siječanj','mjesec'],['hrvatski jezik','Hrvatski jezik','jezik'],['Hrvatska','hrvatska','država'],['Zagreb','zagreb','grad'],['Hrvat','hrvat','pripadnik naroda'],['Sava','sava','ime rijeke'],['Božić','božić','blagdan'],['ljeto','Ljeto','godišnje doba'],['Europa','europa','kontinent']];
+const PAD=[['Nema KRUHA.','Genitiv'],['Dajem knjigu PRIJATELJU.','Dativ'],['Vidim MAČKU.','Akuzativ'],['Živim u ZAGREBU.','Lokativ'],['Pišem OLOVKOM.','Instrumental'],['MARKO, dođi ovamo!','Vokativ'],['DJEVOJKA čita knjigu.','Nominativ'],['Dolazim iz ŠKOLE.','Genitiv'],['Pomažem MAJCI.','Dativ'],['Pričam o FILMU.','Lokativ'],['Idem s PRIJATELJEM.','Instrumental'],['Idem u ŠKOLU.','Akuzativ']];
+const ROD=[['stol','muški'],['žena','ženski'],['more','srednji'],['kuća','ženski'],['dijete','srednji'],['pas','muški'],['sunce','srednji'],['mačka','ženski'],['grad','muški'],['ruka','ženski'],['selo','srednji'],['prozor','muški'],['noć','ženski']];
+const MNO=[['stol','stolovi'],['žena','žene'],['more','mora'],['dijete','djeca'],['čovjek','ljudi'],['grad','gradovi'],['kuća','kuće'],['pas','psi'],['oko','oči'],['uho','uši'],['selo','sela'],['ruka','ruke'],['knjiga','knjige']];
+const VRM=[['Pišem zadaću.','Prezent'],['Pisao sam zadaću.','Perfekt'],['Pisat ću zadaću.','Futur I.'],['Čitam knjigu.','Prezent'],['Čitala sam knjigu.','Perfekt'],['Čitat ću knjigu.','Futur I.'],['Idem u školu.','Prezent'],['Išli smo u školu.','Perfekt'],['Ići ćemo u školu.','Futur I.'],['Jedem kruh.','Prezent'],['Pojeo sam kruh.','Perfekt'],['Jest ću kruh.','Futur I.']];
+const VRS=[['trčati','Glagol'],['stol','Imenica'],['lijep','Pridjev'],['brzo','Prilog'],['ja','Zamjenica'],['i','Veznik'],['na','Prijedlog'],['pet','Broj'],['joj!','Uzvik'],['pjevati','Glagol'],['škola','Imenica'],['velik','Pridjev'],['sutra','Prilog']];
+const SLG=[['kuća',2],['mačka',2],['prijatelj',3],['čokolada',4],['jabuka',3],['škola',2],['sunce',2],['računalo',4],['knjiga',2],['more',2],['prozor',2],['planina',3],['Zagreb',2],['vrt',1],['sladoled',3],['tipkovnica',4]];
+const RIJ=['jabuka','planina','škola','čokolada','prijatelj','knjiga','računalo','sunce','mačka','djevojka','učitelj','zima','tipkovnica','sladoled'];
+const REC=['Ja idem u školu.','Mačka spava na kauču.','Volim čitati knjige.','Zagreb je glavni grad Hrvatske.','Sutra ćemo ići na more.','Učenici pišu zadaću.','Moj prijatelj ima psa.','Ljeti plivamo u moru.'];
+/* Slaganje: klikni dijelove (slova ili riječi) pravim redoslijedom. */
+function slozi(root,ui,items,toks,sep,hint){
+  root.innerHTML='<div class="lqq" style="min-height:3.4rem;font-size:1.5rem;font-weight:900;text-align:center;word-break:break-word;display:flex;align-items:center;justify-content:center"></div><div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:340px"></div><p style="margin:0;min-height:1.4rem;font-weight:700;text-align:center"></p><div style="display:flex;gap:8px"><button class="btn">Obriši</button><button class="btn" style="background:var(--line);color:var(--ink);box-shadow:none">Preskoči</button></div>';
+  const [out,pool,msg,row]=root.children,[clr,skip]=row.children;
+  let sc=0,t,cur=[],tiles=[],lock=false,tm;
+  const reset=()=>{cur=[];lock=false;out.textContent='';msg.textContent='';tiles.forEach(b=>{b.disabled=false;b.style.opacity=1})};
+  const nw=()=>{
+    clearTimeout(tm);t=toks(pickDeck('slozi_'+cur.name,items));
+    let sh;do{sh=shuf(t)}while(t.length>1&&sh.join(sep)===t.join(sep));
+    pool.innerHTML='';tiles=sh.map(x=>{
+      const b=document.createElement('button');b.className='chip';b.style.cssText='font-size:1.15rem;padding:10px 14px';b.textContent=x;
+      b.onclick=()=>{
+        if(lock||b.disabled)return;b.disabled=true;b.style.opacity=.3;cur.push(x);out.textContent=cur.join(sep);
+        if(cur.length===t.length){
+          lock=true;
+          if(cur.join(sep)===t.join(sep)){sc++;addLearn();ui.score('Bodovi: '+sc);msg.textContent='✅ Točno!';msg.style.color='#22c55e';tm=setTimeout(nw,800)}
+          else{msg.textContent='❌ Pokušaj ponovno';msg.style.color='#ef4444';tm=setTimeout(reset,900)}
+        }
+      };
+      pool.append(b);return b;
+    });
+    reset();msg.textContent=hint;msg.style.color='';
+  };
+  clr.onclick=reset;skip.onclick=nw;ui.score('Bodovi: 0');nw();
+  return()=>clearTimeout(tm);
+}
+G.push(
+ {name:'Je, ije ili e?',e:'✏️',c:['#3b82f6','#1e3a8a'],tag:'Hrvatski',help:'30 sekundi. Koji dio riječi nedostaje (jat)?',
+  run:(r,u)=>learnQuiz(r,u,{P:JAT,q:x=>x[0]},2.8)},
+ {name:'Đ ili DŽ?',e:'🔡',c:['#ef4444','#7f1d1d'],tag:'Hrvatski',help:'30 sekundi. Koje slovo nedostaje na početku ili u sredini riječi?',
+  run:(r,u)=>learnQuiz(r,u,{P:DJ,q:x=>x[0]},2.8)},
+ {name:'Veliko ili malo slovo',e:'🔠',c:['#8b5cf6','#4c1d95'],tag:'Hrvatski',help:'30 sekundi. Kako se piše usred rečenice?',
+  run:(r,u)=>learnQuiz(r,u,()=>{const x=pickDeck('caps',CAPS);return{q:'Kako se piše: '+x[2]+'?',a:x[0],d:[x[1]]}},1.5)},
+ {name:'Padeži',e:'📚',c:['#0ea5e9','#082f49'],tag:'Hrvatski',help:'30 sekundi. U kojem je padežu riječ velikim slovima?',
+  run:(r,u)=>learnQuiz(r,u,{P:PAD,q:x=>x[0]},1.5)},
+ {name:'Rod imenice',e:'⚖️',c:['#ec4899','#500724'],tag:'Hrvatski',help:'30 sekundi. Je li imenica muškog, ženskog ili srednjeg roda?',
+  run:(r,u)=>learnQuiz(r,u,{P:ROD,q:x=>'Rod imenice: '+x[0]},1.8)},
+ {name:'Množina',e:'👥',c:['#14b8a6','#134e4a'],tag:'Hrvatski',help:'30 sekundi. Kako glasi množina (nominativ)?',
+  run:(r,u)=>learnQuiz(r,u,{P:MNO,q:x=>'Množina: '+x[0]},2)},
+ {name:'Vremena glagola',e:'⏳',c:['#f59e0b','#78350f'],tag:'Hrvatski',help:'30 sekundi. Prezent, perfekt ili futur I.?',
+  run:(r,u)=>learnQuiz(r,u,{P:VRM,q:x=>x[0]},1.7)},
+ {name:'Vrste riječi',e:'🏷️',c:['#22c55e','#14532d'],tag:'Hrvatski',help:'30 sekundi. Koja je to vrsta riječi?',
+  run:(r,u)=>learnQuiz(r,u,{P:VRS,q:x=>'„'+x[0]+'“ je…'},2.2)},
+ {name:'Slogovi',e:'👏',c:['#f97316','#7c2d12'],tag:'Hrvatski',help:'30 sekundi. Koliko slogova ima riječ?',
+  run:(r,u)=>learnQuiz(r,u,{P:SLG,q:x=>'Koliko slogova: '+x[0]},2.2)},
+ {name:'Slovo po slovo',e:'🧩',c:['#6366f1','#1e1b4b'],tag:'Hrvatski',help:'Složi riječ od pomiješanih slova. Pazi na č, ć, š, ž, đ.',
+  run:(r,u)=>slozi(r,u,RIJ,w=>[...w],'','Složi riječ')},
+ {name:'Složi rečenicu',e:'🧱',c:['#a855f7','#3b0764'],tag:'Hrvatski',help:'Poredaj riječi tako da dobiješ ispravnu rečenicu.',
+  run:(r,u)=>slozi(r,u,REC,s=>s.split(' '),' ','Poredaj riječi')}
+);
+/* ===== PROFIL, RANGOVI I POSTIGNUĆA ===== */
+const RP=[[0,'Novak','🌱','#94a3b8'],[5,'Igrač','🎮','#38bdf8'],[20,'Iskusni','🔥','#f97316'],[50,'Veteran','⚔️','#a855f7'],[100,'Majstor','💎','#22d3ee'],[250,'Legenda','👑','#facc15'],[500,'GG Bog','🌟','#ff4f8b']];
+const RK=[[0,'Početnik','📘','#94a3b8'],[25,'Učenik','✏️','#38bdf8'],[100,'Znalac','🧠','#22c55e'],[250,'Stručnjak','🔬','#a855f7'],[500,'Profesor','🎓','#f59e0b'],[1000,'Genije','💡','#ff4f8b']];
+const rankOf=(T,v)=>{let i=0;T.forEach((r,k)=>{if(v>=r[0])i=k});return i};
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const dKey=ms=>{const d=new Date(ms);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const ACH=[
+ ['first','🚀','Prva igra',p=>p.plays>=1],
+ ['p10','🎯','10 odigranih igara',p=>p.plays>=10],
+ ['p50','🏅','50 odigranih igara',p=>p.plays>=50],
+ ['p100','🏆','100 odigranih igara',p=>p.plays>=100],
+ ['div5','🧭','Istraživač: 5 različitih igara',p=>Object.keys(p.by).length>=5],
+ ['div20','🗺️','Putnik: 20 različitih igara',p=>Object.keys(p.by).length>=20],
+ ['l25','📗','25 točnih odgovora',()=>LS.get('learn',0)>=25],
+ ['l100','📚','100 točnih odgovora',()=>LS.get('learn',0)>=100],
+ ['rec5','⭐','5 osobnih rekorda',()=>Object.keys(best).length>=5],
+ ['st3','🔥','3 dana zaredom',p=>p.streak>=3],
+ ['st7','⚡','7 dana zaredom',p=>p.streak>=7]
+];
+let pf=Object.assign({plays:0,by:{},t:{},streak:0,last:'',ach:[],name:'Igrač'},LS.get('pf',{}));
+if(pf.r==null){pf.r=rankOf(RP,pf.plays);pf.k=rankOf(RK,LS.get('learn',0))}
+ACH.forEach(a=>{if(!pf.ach.includes(a[0])&&a[3](pf))pf.ach.push(a[0])});
+function toast(h){
+  let c=$('#toasts');if(!c){c=document.createElement('div');c.id='toasts';document.body.append(c)}
+  const t=document.createElement('div');t.className='toast';t.innerHTML=h;c.append(t);
+  setTimeout(()=>t.classList.add('out'),3200);setTimeout(()=>t.remove(),3700);
+}
+function progress(){
+  const r=rankOf(RP,pf.plays),k=rankOf(RK,LS.get('learn',0));
+  if(r>pf.r)toast(RP[r][2]+' Novi rang: <b>'+RP[r][1]+'</b>');
+  if(k>pf.k)toast(RK[k][2]+' Novi rang znanja: <b>'+RK[k][1]+'</b>');
+  pf.r=r;pf.k=k;
+  ACH.forEach(a=>{if(!pf.ach.includes(a[0])&&a[3](pf)){pf.ach.push(a[0]);toast(a[1]+' Postignuće: <b>'+a[2]+'</b>')}});
+  LS.set('pf',pf);stats();
+}
+function track(o){
+  const n=Date.now(),td=dKey(n);
+  if(pf.last!==td){pf.streak=pf.last===dKey(n-864e5)?pf.streak+1:1;pf.last=td}
+  if(n-(pf.t[o.name]||0)>20000){pf.plays++;pf.by[o.name]=(pf.by[o.name]||0)+1;pf.t[o.name]=n}
+  progress();
+}
+function stats(){
+  const el=$('#prof');if(!el)return;
+  const L=LS.get('learn',0),r=rankOf(RP,pf.plays),k=rankOf(RK,L),R=RP[r],K=RK[k],nx=RP[r+1],nk=RK[k+1];
+  const pr=nx?Math.round((pf.plays-R[0])/(nx[0]-R[0])*100):100,pk=nk?Math.round((L-K[0])/(nk[0]-K[0])*100):100;
+  $('#hc').textContent=G.length;el.style.setProperty('--rc',R[3]);
+  el.innerHTML=`<div class="pc-top"><div class="av">${R[2]}</div><div class="pc-id"><button class="pname" id="pname" title="Promijeni ime">${esc(pf.name)} ✎</button><div class="prank"><b style="color:${R[3]}">${R[1]}</b> · ${K[2]} ${K[1]}</div></div><div class="streak">🔥 ${pf.streak||0}<small>dana zaredom</small></div></div>
+<div class="bars"><div><div class="bl"><span>Rang igrača${nx?' → '+nx[1]:' (maksimum)'}</span><span>${pf.plays}${nx?' / '+nx[0]:''} igara</span></div><div class="pbar"><i style="width:${pr}%;background:${R[3]}"></i></div></div>
+<div><div class="bl"><span>Rang znanja${nk?' → '+nk[1]:' (maksimum)'}</span><span>${L}${nk?' / '+nk[0]:''} točnih</span></div><div class="pbar"><i style="width:${pk}%;background:${K[3]}"></i></div></div></div>
+<div class="pst"><div><b>${pf.plays}</b><span>odigrano</span></div><div><b>${Object.keys(pf.by).length}/${G.length}</b><span>različitih</span></div><div><b>${Object.keys(best).length}</b><span>rekorda</span></div><div><b>${pf.ach.length}/${ACH.length}</b><span>postignuća</span></div></div>
+<div class="badges">${ACH.map(a=>`<span class="bd${pf.ach.includes(a[0])?' on':''}" title="${a[2]}">${a[1]}</span>`).join('')}</div>`;
+  $('#pname').onclick=()=>{const n=prompt('Tvoje ime:',pf.name);if(n&&n.trim()){pf.name=n.trim().slice(0,16);LS.set('pf',pf);stats()}};
+}
+// ---------- Dodatni sadržaj (da se pitanja rjeđe ponavljaju) ----------
+ENG.push(['bird','ptica'],['fish','riba'],['horse','konj'],['flower','cvijet'],['river','rijeka'],['mountain','planina'],['sea','more'],['city','grad'],['street','ulica'],['room','soba'],['table','stol'],['chair','stolac'],['door','vrata'],['night','noć'],['morning','jutro'],['week','tjedan'],['year','godina'],['cold','hladan'],['hot','vruć'],['old','star'],['new','nov'],['young','mlad'],['strong','jak'],['tired','umoran'],['hungry','gladan'],['thirsty','žedan'],['cheap','jeftin'],['expensive','skup'],['difficult','težak'],['easy','lagan']);
+IT.push(['VPN','Šifrirana veza'],['API','Sučelje programa'],['SQL','Jezik za baze podataka'],['Linux','Operacijski sustav'],['Phishing','Prijevara lažnim porukama'],['Cloud','Pohrana na internetu'],['Bug','Greška u programu'],['Cache','Brza privremena memorija'],['Bandwidth','Propusnost mreže'],['Pixel','Točka na ekranu'],['Kompajler','Pretvara kod u program'],['Algoritam','Slijed koraka za rješenje']);
+SPACE.push(['Najveći planet','Jupiter'],['Crveni planet','Mars'],['Planet s prstenovima','Saturn'],['Planet najbliži Suncu','Merkur'],['Naš planet','Zemlja'],['Najtopliji planet','Venera']);
+CC.push(['o_i','č'],['mo_','ć'],['bra_a','ć'],['dje_ak','č'],['lije_nik','č'],['sestri_na','č'],['plo_a','č'],['slu_aj','č'],['zna_aj','č'],['sve_enik','ć'],['sre_a','ć']);
+JAT.push(['t_lo','ije'],['v_rovati','je'],['sv_t','ije'],['dj_lo','je'],['mj_ra','je'],['s_no','ije'],['c_na','ije'],['pj_vač','je'],['br_g','ije'],['gn_zdo','ije'],['lj_to','e'],['lj_kar','e'],['nj_gov','e']);
+DJ.push(['_ezva','dž'],['_oker','dž'],['_em','dž'],['_epni','dž'],['ra_ati','đ'],['me_utim','đ']);
+CAPS.push(['listopad','Listopad','mjesec'],['subota','Subota','dan u tjednu'],['francuski jezik','Francuski jezik','jezik'],['Francuz','francuz','pripadnik naroda'],['Dunav','dunav','ime rijeke'],['Uskrs','uskrs','blagdan'],['Njemačka','njemačka','država'],['Osijek','osijek','grad'],['proljeće','Proljeće','godišnje doba'],['Azija','azija','kontinent']);
+PAD.push(['Bojim se PSA.','Genitiv'],['Dolazim k PRIJATELJU.','Dativ'],['Sjedim na STOLICI.','Lokativ'],['Pišem PISMO.','Akuzativ'],['Razgovaram s UČITELJICOM.','Instrumental'],['Čitam o ZAGREBU.','Lokativ'],['MAJKO, pomozi mi!','Vokativ'],['DAN je lijep.','Nominativ'],['Dajem poklon MAMI.','Dativ'],['Imam brata i SESTRU.','Akuzativ']);
+ROD.push(['dan','muški'],['voda','ženski'],['drvo','srednji'],['cvijet','muški'],['knjiga','ženski'],['ptica','ženski'],['polje','srednji'],['sat','muški'],['mjesec','muški'],['zvijezda','ženski'],['pismo','srednji'],['stablo','srednji']);
+MNO.push(['dan','dani'],['prijatelj','prijatelji'],['škola','škole'],['noć','noći'],['ptica','ptice'],['sat','sati'],['zub','zubi'],['list','listovi'],['sin','sinovi'],['brat','braća']);
+VRM.push(['Gledam film.','Prezent'],['Gledali smo film.','Perfekt'],['Gledat ćemo film.','Futur I.'],['Pijem vodu.','Prezent'],['Pila sam vodu.','Perfekt'],['Pit ću vodu.','Futur I.']);
+VRS.push(['kuća','Imenica'],['crven','Pridjev'],['plivati','Glagol'],['uvijek','Prilog'],['ti','Zamjenica'],['ali','Veznik'],['ispod','Prijedlog'],['dvadeset','Broj'],['oh!','Uzvik'],['mi','Zamjenica']);
+SLG.push(['kišobran',3],['televizor',4],['učiteljica',5],['mobitel',3],['kruh',1],['prijateljstvo',4],['nogomet',3],['automobil',4],['grad',1]);
+RIJ.push('nogomet','prozor','kišobran','televizor','mobitel','učiteljica','čarapa','šuma','ljubav','domovina','zvijezda','vjetar','proljeće','ormar','žaba');
+REC.push('Mi idemo u kino.','Naš pas trči po dvorištu.','Ivan igra nogomet s prijateljima.','Danas pada snijeg.','Moja sestra čita zanimljivu knjigu.','U školi učimo hrvatski jezik.','Ljeti idemo na more.','Ona voli plesati.');
+HIST.push(['Prvi let braće Wright','1903'],['Napoleon poražen kod Waterlooa','1815'],['SAD proglašavaju neovisnost','1776'],['Pad Konstantinopola','1453'],['Završetak Drugog svjetskog rata u Europi','1945'],['Hrvatska ulazi u NATO','2009'],['Hrvatska uvodi euro','2023'],['Nesreća u Černobilu','1986'],['Napadi 11. rujna','2001']);
+MLAD.push(['zeca','zečić'],['magarca','magare'],['lava','lavić'],['žabe','punoglavac']);
+SHAPES.push(['Pravokutnik',4],['Romb',4],['Devetokut',9],['Dvanaesterokut',12]);
+UNITS.push(['1 t','1000 kg'],['1 cm','10 mm'],['1 dm','10 cm'],['1 sat','3600 s'],['1 dl','100 ml'],['1 stoljeće','100 godina']);
+HR.push(['Rijeka koja teče kroz Zagreb','Sava'],['Rijeka koja teče kroz Osijek','Drava'],['Naziv hrvatske himne','Lijepa naša domovino'],['Otok sa Zlatnim ratom','Brač'],['Grad s Trsatom','Rijeka']);
+JS.push(['"3" * "4"','12'],['typeof "5"','"string"'],['parseInt("42px")','42'],['"b" > "a"','true'],['5 === "5"','false'],['5 == "5"','true'],['Math.floor(4.9)','4'],['[1,2,3].includes(2)','true'],['"hello".length','5'],['Boolean("")','false'],['Math.round(2.5)','3']);
+DE.push(['der Tisch','stol'],['die Tür','vrata'],['das Auto','auto'],['der Vogel','ptica'],['der Baum','drvo'],['die Blume','cvijet'],['rot','crven'],['blau','plav'],['grün','zelen'],['gelb','žut'],['ja','da'],['nein','ne'],['guten Morgen','dobro jutro'],['gute Nacht','laku noć']);
+IRR.push(['do','did'],['have','had'],['make','made'],['say','said'],['get','got'],['find','found'],['sit','sat'],['sleep','slept'],['swim','swam'],['fly','flew'],['teach','taught'],['sing','sang'],['win','won']);
+ANT.push(['otvoren','zatvoren'],['gore','dolje'],['sretan','tužan'],['jak','slab'],['čist','prljav'],['jeftin','skup'],['rano','kasno'],['blizu','daleko'],['tih','glasan'],['ljeto','zima']);
+TAGS.push(['<span>','Inline element'],['<form>','Obrazac'],['<li>','Stavka popisa'],['<video>','Video'],['<h2>','Podnaslov'],['<nav>','Navigacija'],['<footer>','Podnožje stranice'],['<title>','Naslov u kartici'],['<script>','JavaScript kod']);
+PORTS.push(['POP3','110'],['IMAP','143'],['Telnet','23'],['RDP','3389'],['MySQL','3306']);
+CUR.push(['Rusija','Rubalj'],['Indija','Rupija'],['Kina','Juan'],['Turska','Lira'],['Brazil','Real'],['Južna Koreja','Von'],['Meksiko','Pezo']);
+const CITIES=[['Hrvatska','Zagreb'],['Francuska','Pariz'],['Njemačka','Berlin'],['Italija','Rim'],['Španjolska','Madrid'],['Austrija','Beč'],['Mađarska','Budimpešta'],['Slovenija','Ljubljana'],['Srbija','Beograd'],['Grčka','Atena'],['Portugal','Lisabon'],['Poljska','Varšava'],['Češka','Prag'],['Norveška','Oslo'],['Švedska','Stockholm'],['Irska','Dublin'],['Japan','Tokio'],['Kanada','Ottawa'],['Australija','Canberra'],['Turska','Ankara'],['Egipat','Kairo'],['Brazil','Brasilia']];
+CITIES.push(['Danska','Kopenhagen'],['Finska','Helsinki'],['Nizozemska','Amsterdam'],['Belgija','Bruxelles'],['Švicarska','Bern'],['Rumunjska','Bukurešt'],['Bugarska','Sofija'],['Slovačka','Bratislava'],['Bosna i Hercegovina','Sarajevo'],['Crna Gora','Podgorica'],['Sjeverna Makedonija','Skoplje'],['Albanija','Tirana'],['Ukrajina','Kijev'],['Rusija','Moskva'],['Kina','Peking'],['Indija','New Delhi'],['SAD','Washington'],['Argentina','Buenos Aires'],['Island','Reykjavik'],['Latvija','Riga'],['Litva','Vilnius'],['Estonija','Tallinn'],['Ujedinjeno Kraljevstvo','London']);
+/* Zastave se crtaju kao SVG (emoji zastave se na Windowsima prikazuju samo kao slova). */
+const FLAGS=[['Hrvatska','h',['#f00','#fff','#171796']],['Njemačka','h',['#000','#d00','#ffce00']],['Austrija','h',['#ed2939','#fff','#ed2939']],['Mađarska','h',['#cd2a3e','#fff','#436f4d']],['Nizozemska','h',['#ae1c28','#fff','#21468b']],['Rusija','h',['#fff','#0039a6','#d52b1e']],['Bugarska','h',['#fff','#00966e','#d62612']],['Litva','h',['#fdb913','#006a44','#c1272d']],['Estonija','h',['#0072ce','#000','#fff']],['Ukrajina','h',['#0057b7','#ffd700']],['Poljska','h',['#fff','#dc143c']],['Francuska','v',['#0055a4','#fff','#ef4135']],['Italija','v',['#009246','#fff','#ce2b37']],['Belgija','v',['#000','#fdda24','#ef3340']],['Rumunjska','v',['#002b7f','#fcd116','#ce1126']],['Japan','jp'],['Švicarska','ch'],['Švedska','n',['#006aa7','#fecc00']],['Danska','n',['#c8102e','#fff']],['Norveška','n',['#ba0c2f','#fff','#00205b']],['Finska','n',['#fff','#003580']]];
+const flagSVG=f=>{
+  const [n,t,c]=f;let b='';
+  if(t=='h')b=c.map((k,i)=>`<rect y="${i*60/c.length}" width="90" height="${60/c.length}" fill="${k}"/>`).join('');
+  else if(t=='v')b=c.map((k,i)=>`<rect x="${i*30}" width="30" height="60" fill="${k}"/>`).join('');
+  else if(t=='jp')b='<rect width="90" height="60" fill="#fff"/><circle cx="45" cy="30" r="18" fill="#bc002d"/>';
+  else if(t=='ch')b='<rect width="90" height="60" fill="#d52b1e"/><path d="M39 12h12v15h15v12H51v15H39V39H24V27h15z" fill="#fff"/>';
+  else b=`<rect width="90" height="60" fill="${c[0]}"/><rect x="22" width="14" height="60" fill="${c[1]}"/><rect y="23" width="90" height="14" fill="${c[1]}"/>`+(c[2]?`<rect x="26" width="6" height="60" fill="${c[2]}"/><rect y="27" width="90" height="6" fill="${c[2]}"/>`:'');
+  if(n=='Hrvatska'){for(let i=0;i<5;i++)for(let j=0;j<5;j++)b+=`<rect x="${37.5+i*3}" y="${22.5+j*3}" width="3" height="3" fill="${(i+j)%2?'#fff':'#e00'}"/>`;b+='<rect x="37.5" y="22.5" width="15" height="15" fill="none" stroke="#171796" stroke-width=".8"/>'}
+  return `<svg viewBox="0 0 90 60" width="150" height="100" style="border-radius:10px;box-shadow:0 8px 20px -8px #0008;border:1px solid #ffffff30">${b}</svg>`;
+};
 // ====== kraj UČI patcha ======
 
 /* ---------- EXTRAS ---------- */
