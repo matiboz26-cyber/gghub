@@ -292,7 +292,7 @@ const G=[
  {name:'Lights Out',e:'💡',c:['#facc15','#a16207'],tag:'Zagonetka',help:'Ugasi sva svjetla. Klik mijenja polje i susjede.',run:lights},
  {name:'Slagalica 15',e:'🧩',c:['#10b981','#064e3b'],tag:'Slagalica',help:'Složi brojeve od 1 do 15 pomicanjem pločica.',run:slide},
  {name:'Hvataj voće',e:'🧺',c:['#fb7185','#9f1239'],tag:'Refleksi',help:'Miš / prst / strelice pomiču košaru. Bombe izbjegavaj!',run:catchf},
- {name:'Vješala',e:'🔤',c:['#8b5cf6','#4c1d95'],tag:'Zagonetka',help:'Pogodi riječ prije nego ostaneš bez života.',run:hang},
+ {name:'Vješala',e:'🔤',c:['#8b5cf6','#4c1d95'],tag:'Zagonetka',help:'Pogodi riječ prije nego ostaneš bez života. Možeš tipkati i s tipkovnice (c = c/č/ć).',run:hang},
  {name:'Preplavi',e:'🌊',c:['#0ea5e9','#1e3a8a'],tag:'Zagonetka',help:'Preplavi cijelu ploču jednom bojom u 22 poteza.',run:flood},
  {name:'Izbjegni',e:'☄️',c:['#a855f7','#0f172a'],tag:'Arkada',help:'Miš / prst / strelice. Izbjegavaj meteore što duže.',run:dodge},
  {name:'Veće ili manje',e:'🃏',c:['#16a34a','#052e16'],tag:'Klasik',help:'Pogodi je li sljedeća karta veća ili manja.',run:hilo},
@@ -303,6 +303,8 @@ const G=[
  {name:'Zapamti broj',e:'🔟',c:['#f59e0b','#7c2d12'],tag:'Pamćenje',help:'Zapamti prikazani broj i upiši ga. Svaki put je duži.',run:broj},
  {name:'Brzo tipkanje',e:'⌨️',c:['#6366f1','#1e1b4b'],tag:'Refleksi',help:'30 sekundi. Upiši što više prikazanih riječi.',run:tipkaj}
 ];
+/* Ispravlja hrvatska slova: č,ć→c, š→s, ž→z, đ/dž→d, pa se može pisati i bez kvačica. */
+const FOLD=t=>String(t).toLowerCase().replace(/dž/g,'d').replace(/đ/g,'d').replace(/dj/g,'d').replace(/dz/g,'d').replace(/[čć]/g,'c').replace(/š/g,'s').replace(/ž/g,'z');
 const TR=t=>t==='Uči'?0:t==='Hrvatski'?1:2;
 const CI={'Hrvatski':'🇭🇷','Uči':'🎓','Klasik':'🕹️','Slagalica':'🧩','Protiv računala':'🤖','Arkada':'👾','Zagonetka':'🔎','Refleksi':'⚡','Pamćenje':'🧠'};
 let fav=LS.get('fav',[]),rec=LS.get('rec',[]),best=LS.get('best',{}),cur=null,stop=null,cat='Sve',qs='';
@@ -320,7 +322,7 @@ function render(){
   L.forEach(o=>{
     if(grouped&&o.tag!==lt){lt=o.tag;const h=document.createElement('h2');h.className='sec';h.innerHTML=`${CI[lt]||''} ${lt} <small>${G.filter(x=>x.tag===lt).length}</small>`;g.append(h)}
     if(cat==='❤️ Omiljene'?!fav.includes(o.name):(cat!=='Sve'&&o.tag!==cat))return;
-    if(qs&&!(o.name+o.tag).toLowerCase().includes(qs))return;
+    if(qs&&!FOLD(o.name+o.tag).includes(FOLD(qs)))return;
     const b=document.createElement('div');b.className='card';b.dataset.e=o.e;b.dataset.tag=o.tag;b.tabIndex=0;b.setAttribute('role','button');
     b.style.cssText=`--c1:${o.c[0]};--c2:${o.c[1]};--i:${n++}`;
     b.onkeydown=e=>{if(e.target===b&&(e.key==='Enter'||e.key===' ')){e.preventDefault();openGame(o)}};
@@ -1012,7 +1014,17 @@ function hang(root,ui){
     b.onclick=()=>{u.add(c);if(!w.includes(c))l--;paint()};k.append(b);
   });
   function reset(){w=pickDeck('hang',WD);u=new Set();l=6;paint()}
+  /* Tipkovnica: c pogađa c, č i ć; s pogađa s i š; z pogađa z i ž; d pogađa d i đ. */
+  const kd=e=>{
+    if(e.ctrlKey||e.metaKey||e.altKey||e.key.length!==1||l<=0||[...w].every(c=>u.has(c)))return;
+    const f=FOLD(e.key);if(!/^[a-z]$/.test(f))return;
+    const cs=[...k.children].map(b=>b.textContent).filter(c=>FOLD(c)===f&&!u.has(c));
+    if(!cs.length)return;
+    cs.forEach(c=>u.add(c));if(!cs.some(c=>w.includes(c)))l--;paint();
+  };
+  document.addEventListener('keydown',kd);
   nb.onclick=reset;reset();
+  return()=>document.removeEventListener('keydown',kd);
 }
 
 /* ---------- PREPLAVI ---------- */
@@ -1175,7 +1187,7 @@ function tipkaj(root,ui){
   const [d,i,bt]=root.children;let sc=0,tl=0,w,t;
   const info=()=>ui.score(`Bodovi: ${sc} · Vrijeme: ${tl}s`);
   const next=()=>{w=pickDeck('tipkaj',W);d.textContent=w;i.value=''};
-  i.oninput=()=>{if(tl>0&&i.value.trim().toLowerCase()===w){sc++;info();next()}};
+  i.oninput=()=>{if(tl>0&&FOLD(i.value.trim())===FOLD(w)){sc++;info();next()}};
   bt.onclick=()=>{clearInterval(t);sc=0;tl=30;info();i.disabled=false;i.focus();next();
     t=setInterval(()=>{tl--;info();if(tl<=0){clearInterval(t);i.disabled=true;d.textContent='Kraj!';ui.score('Kraj! Bodovi: '+sc)}},1000)};
   return()=>clearInterval(t);
